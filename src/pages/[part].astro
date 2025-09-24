@@ -1,0 +1,27 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const parts = await getCollection("parts");
+  return parts.map((entry) => ({ params: { part: entry.slug } }));
+}
+
+const { part } = Astro.params;
+const parts = await getCollection("parts");
+const entry = parts.find((p) => p.slug === part);
+
+if (!entry) {
+  return Astro.redirect("/part-1");
+}
+
+const { Content } = await entry.render();
+---
+<MainLayout title={`Maciej Witek — ${entry.data.title}`} description={`Podstrona ${entry.data.title}`}>
+  <section class="space-y-6">
+    <article class="prose dark:prose-invert max-w-none">
+      <h1 class="text-3xl font-bold tracking-tight">{entry.data.title}</h1>
+      <Content />
+    </article>
+  </section>
+</MainLayout>

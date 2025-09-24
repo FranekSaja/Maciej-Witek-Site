@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+html {
+  color-scheme: light dark;
+}
+
+:root {
+  /* Custom properties previously defined in @theme */
+  --color-bg: #ffffff;
+  --color-fg: #0f172a; /* slate-900 */
+  --color-bg-dark: #0f172a; /* slate-900 */
+  --color-fg-dark: #f1f5f9; /* slate-100 */
+  --container: 72rem;
+}
+
+.prose img {
+  border-radius: 0.5rem;
+}

@@ -1,0 +1,30 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = 'Maciej Witek — Strona oficjalna',
+  description = 'Oficjalna strona Macieja Witka — sylwetka naukowa, obszary badawcze, publikacje i kontakt.'
+} = Astro.props as Props;
+import '../styles/global.css';
+import MenuBar from "../components/MenuBar.astro";
+---
+<html lang="pl" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body class="min-h-screen bg-white text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-100">
+    <MenuBar />
+    <main class="mx-auto max-w-5xl px-4 py-10">
+      <slot />
+    </main>
+  </body>
+</html>

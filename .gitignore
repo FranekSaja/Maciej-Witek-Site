@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.output/
+
+# Astro cache
+.astro/
+node_modules/.astro/
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Editors
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.log
