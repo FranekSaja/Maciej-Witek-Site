@@ -8,17 +8,23 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui"
   },
   "dependencies": {
-    "astro": "^5.0.0",
     "@astrojs/mdx": "^4.0.0",
     "@astrojs/sitemap": "^3.1.3",
+    "astro": "^5.0.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.0",
+    "@testing-library/jest-dom": "^6.8.0",
+    "jsdom": "^27.0.0",
     "tailwindcss": "^4.0.0",
-    "typescript": "^5.4.0"
+    "typescript": "^5.4.0",
+    "vitest": "^3.2.4"
   }
 }
