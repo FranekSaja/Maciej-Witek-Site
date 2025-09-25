@@ -20,3 +20,4 @@ node_modules/.astro/
 !.vscode/settings.json
 .idea/
 *.log
+coverage/
