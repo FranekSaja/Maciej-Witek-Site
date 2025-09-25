@@ -12,7 +12,7 @@ const bio = defineCollection({
 const parts = defineCollection({
   type: 'content',
   schema: z.object({
-    id: z.enum(['part-1', 'part-2', 'part-3', 'part-4']),
+    id: z.string(),
     title: z.string()
   })
 })
