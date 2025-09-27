@@ -5,9 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
-    "build:gh-pages": "rm -rf dist && NODE_ENV=production astro build --verbose && touch dist/.nojekyll",
-    "test:ci": "vitest run",
+    "build": "npm test && astro check && astro build",
     "preview": "astro preview",
     "check": "astro check",
     "typecheck": "tsc --noEmit",

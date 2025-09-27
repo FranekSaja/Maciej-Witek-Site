@@ -3,21 +3,12 @@ import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@tailwindcss/vite'
 
-// Prosta konfiguracja dla GitHub Pages
+// Uzupełnij 'site' docelowym adresem produkcyjnym (wymagane m.in. dla sitemap)
 export default defineConfig({
-  site: 'https://franeksaja.github.io',
-  base: '/Maciej-Witek-Site',
-  trailingSlash: 'always',
-  build: {
-    format: 'file'
-  },
+  site: 'https://example.com',
+  base: '/',
   output: 'static',
-  integrations: [
-    mdx({
-      // Minimalna konfiguracja MDX
-    }),
-    sitemap()
-  ],
+  integrations: [mdx(), sitemap()],
   vite: { plugins: [tailwind()] },
   image: {
     // Dodaj dozwolone hosty dla zdalnych obrazów, kiedy będą potrzebne
