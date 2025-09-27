@@ -7,6 +7,10 @@ import tailwind from '@tailwindcss/vite'
 export default defineConfig({
   site: 'https://franeksaja.github.io',
   base: '/Maciej-Witek-Site/',
+  redirects: {
+    // Przekierowanie z katalogu głównego na /Maciej-Witek-Site/
+    '/': '/Maciej-Witek-Site/'
+  },
   output: 'static',
   integrations: [mdx(), sitemap()],
   vite: { plugins: [tailwind()] },
