@@ -3,14 +3,16 @@ import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@tailwindcss/vite'
 
-// Uzupełnij 'site' docelowym adresem produkcyjnym (wymagane m.in. dla sitemap)
+// Konfiguracja dla GitHub Pages
 export default defineConfig({
   site: 'https://franeksaja.github.io',
-  base: '/Maciej-Witek-Site/',
-  redirects: {
-    // Przekierowanie z katalogu głównego na /Maciej-Witek-Site/
-    '/': '/Maciej-Witek-Site/'
+  base: '/Maciej-Witek-Site', // Usunięcie końcowego ukośnika
+  trailingSlash: 'always', // Zawsze używaj ukośników na końcu URL-i
+  build: {
+    format: 'file' // Generuj pliki .html dla każdej strony
   },
+  // Wyłącz przekierowania, które mogą powodować problemy
+  // redirects: {},
   output: 'static',
   integrations: [mdx(), sitemap()],
   vite: { plugins: [tailwind()] },
