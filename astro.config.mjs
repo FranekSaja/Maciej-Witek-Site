@@ -3,18 +3,21 @@ import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@tailwindcss/vite'
 
-// Konfiguracja dla GitHub Pages
+// Prosta konfiguracja dla GitHub Pages
 export default defineConfig({
   site: 'https://franeksaja.github.io',
-  base: '/Maciej-Witek-Site', // Usunięcie końcowego ukośnika
-  trailingSlash: 'always', // Zawsze używaj ukośników na końcu URL-i
+  base: '/Maciej-Witek-Site',
+  trailingSlash: 'always',
   build: {
-    format: 'file' // Generuj pliki .html dla każdej strony
+    format: 'file'
   },
-  // Wyłącz przekierowania, które mogą powodować problemy
-  // redirects: {},
   output: 'static',
-  integrations: [mdx(), sitemap()],
+  integrations: [
+    mdx({
+      // Minimalna konfiguracja MDX
+    }),
+    sitemap()
+  ],
   vite: { plugins: [tailwind()] },
   image: {
     // Dodaj dozwolone hosty dla zdalnych obrazów, kiedy będą potrzebne
