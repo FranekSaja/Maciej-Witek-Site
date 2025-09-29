@@ -1,12 +1,13 @@
 ---
 // Pasek menu zintegrowany z kolekcją parts
 import { getCollection } from 'astro:content';
+import { join } from 'path-browserify';
 
 const parts = await getCollection('parts');
 const tabs = [
   { href: import.meta.env.BASE_URL, label: 'Start' },
   ...parts.map((entry) => ({
-    href: `${import.meta.env.BASE_URL}${entry.slug}`,
+    href: join(import.meta.env.BASE_URL, entry.slug),
     label: entry.data.title
   }))
 ];
