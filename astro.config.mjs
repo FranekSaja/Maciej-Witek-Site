@@ -6,7 +6,7 @@ import tailwind from '@tailwindcss/vite'
 // Uzupełnij 'site' docelowym adresem produkcyjnym (wymagane m.in. dla sitemap)
 export default defineConfig({
   site: 'https://FranekSaja.github.io',
-  base: '/Maciej-Witek-Site',
+  base: '/',
   output: 'static',
   integrations: [mdx(), sitemap()],
   vite: { plugins: [tailwind()] },
