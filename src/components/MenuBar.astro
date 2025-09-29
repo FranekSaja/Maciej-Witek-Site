@@ -4,9 +4,9 @@ import { getCollection } from 'astro:content';
 
 const parts = await getCollection('parts');
 const tabs = [
-  { href: '/', label: 'Start' },
+  { href: import.meta.env.BASE_URL, label: 'Start' },
   ...parts.map((entry) => ({
-    href: `/${entry.slug}`,
+    href: `${import.meta.env.BASE_URL}${entry.slug}`,
     label: entry.data.title
   }))
 ];
