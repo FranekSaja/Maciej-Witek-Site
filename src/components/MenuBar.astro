@@ -12,16 +12,167 @@ const tabs = [
   }))
 ];
 ---
-<nav aria-label="Główne menu" class="sticky top-0 z-10 border-b border-slate-200/60 bg-white/80 backdrop-blur dark:border-slate-700/60 dark:bg-slate-900/80">
-  <div class="mx-auto max-w-5xl px-4">
-    <ul class="flex items-center gap-4 overflow-x-auto py-3">
+
+<!-- Przycisk przełączający menu, widoczny tylko na małych ekranach -->
+<button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+  <svg class="hamburger-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="3" y1="12" x2="21" y2="12"></line>
+    <line x1="3" y1="6" x2="21" y2="6"></line>
+    <line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+  <span class="menu-toggle-text">Menu</span>
+</button>
+
+<!-- Kontener menu -->
+<div id="menu-container" class="menu-container">
+  <nav aria-label="Główne menu" class="main-menu">
+    <ul class="menu-list">
       {tabs.map((t) => (
         <li>
-          <a href={t.href} class="inline-flex items-center rounded px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800">
+          <a href={t.href} class="menu-link">
             {t.label}
           </a>
         </li>
       ))}
     </ul>
-  </div>
-</nav>
+  </nav>
+</div>
+
+<style>
+  :root {
+    --menu-width-lg: 300px;
+    --menu-width-sm: 280px;
+    --menu-background-light: #f8fafc; /* slate-50 */
+    --menu-background-dark: #1e293b;  /* slate-800 */
+    --menu-border-light: #e2e8f0;     /* slate-200 */
+    --menu-border-dark: #334155;      /* slate-700 */
+    --menu-text-light: var(--color-fg);
+    --menu-text-dark: var(--color-fg-dark);
+    --menu-link-hover-bg-light: #e2e8f0; /* slate-200 */
+    --menu-link-hover-bg-dark: #334155;  /* slate-700 */
+    --menu-toggle-bg-light: rgba(255, 255, 255, 0.8);
+    --menu-toggle-bg-dark: rgba(30, 41, 59, 0.8);
+  }
+
+  /* --- Style dla dużych ekranów (Desktop) --- */
+  .menu-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: var(--menu-width-lg);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--menu-background-light);
+    border-left: 1px solid var(--menu-border-light);
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+    padding: 2rem 0;
+  }
+
+  .main-menu {
+    width: 100%;
+  }
+
+  .menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .menu-link {
+    display: block;
+    padding: 1rem 2rem;
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--menu-text-light);
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .menu-link:hover {
+    background-color: var(--menu-link-hover-bg-light);
+  }
+
+  .menu-toggle {
+    display: none; /* Ukryj przycisk na dużych ekranach */
+  }
+
+  /* --- Style dla małych ekranów (Mobile) --- */
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1001;
+      background-color: var(--menu-toggle-bg-light);
+      backdrop-filter: blur(4px);
+      border: 1px solid var(--menu-border-light);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--menu-text-light);
+    }
+
+    .menu-container {
+      left: 0;
+      right: auto;
+      width: var(--menu-width-sm);
+      transform: translateX(-100%);
+      border-left: none;
+      border-right: 1px solid var(--menu-border-light);
+      padding: 4rem 0;
+    }
+
+    .menu-container.is-open {
+      transform: translateX(0);
+    }
+  }
+
+  /* --- Dark Mode Styles --- */
+  @media (prefers-color-scheme: dark) {
+    .menu-container {
+      background-color: var(--menu-background-dark);
+      border-color: var(--menu-border-dark);
+    }
+
+    .menu-link {
+      color: var(--menu-text-dark);
+    }
+
+    .menu-link:hover {
+      background-color: var(--menu-link-hover-bg-dark);
+    }
+
+    .menu-toggle {
+      background-color: var(--menu-toggle-bg-dark);
+      border-color: var(--menu-border-dark);
+      color: var(--menu-text-dark);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuContainer = document.getElementById('menu-container');
+
+    if (menuToggle && menuContainer) {
+      menuToggle.addEventListener('click', () => {
+        menuContainer.classList.toggle('is-open');
+        const isOpen = menuContainer.classList.contains('is-open');
+        menuToggle.setAttribute('aria-expanded', isOpen.toString());
+      });
+    }
+  });
+</script>

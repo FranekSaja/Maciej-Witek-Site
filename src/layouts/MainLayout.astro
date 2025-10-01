@@ -23,8 +23,23 @@ import MenuBar from "../components/MenuBar.astro";
   </head>
   <body class="min-h-screen bg-white text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-100">
     <MenuBar />
-    <main class="mx-auto max-w-5xl px-4 py-10">
+    <main class="main-content">
       <slot />
     </main>
+    <style>
+      .main-content {
+        max-width: var(--container, 72rem);
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2.5rem 1rem;
+      }
+
+      @media (min-width: 769px) {
+        .main-content {
+          margin-right: calc(var(--menu-width-lg, 300px) + 2rem);
+          padding: 2.5rem;
+        }
+      }
+    </style>
   </body>
 </html>
