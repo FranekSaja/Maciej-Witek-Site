@@ -6,12 +6,19 @@ html {
 
 :root {
   /* Custom properties previously defined in @theme */
-  --color-bg: #eab308; /* yellow-500 */
-  --color-fg: #000000; /* black */
-  --color-bg-dark: #eab308; /* yellow-500 */
-  --color-fg-dark: #000000; /* black */
-  --color-menu-bg: #facc15; /* yellow-400 */
-  --color-menu-bg-dark: #facc15; /* yellow-400 */
+  /* Light Mode Palette */
+  --color-bg: #FDFBF7; /* Soft off-white */
+  --color-fg: #192A3E; /* Dark navy text */
+  --color-menu-bg: #0343aa; /* Deep teal */
+  --color-menu-fg: #FFFFFF; /* White text for menu */
+  --color-link: #0056b3; /* Standard link blue */
+
+  /* Dark Mode Palette */
+  --color-bg-dark: #192A3E; /* Dark navy background */
+  --color-fg-dark: #FDFBF7; /* Soft off-white text */
+  --color-menu-bg-dark: #2a3c6b; /* Slightly darker teal */
+  --color-menu-fg-dark: #FFFFFF; /* White text for menu */
+  --color-link-dark: #66a3ff; /* Lighter blue for dark mode links */
   --container: 72rem;
 }
 
