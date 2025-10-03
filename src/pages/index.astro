@@ -3,7 +3,6 @@ import MainLayout from "@layouts/MainLayout.astro";
 import { getCollection } from "astro:content";
 
 const bio = await getCollection("bio");
-const publications = await getCollection("publications");
 const person = bio[0]?.data;
 // Po zmianie kolekcji na type: 'content' wpisy mają metodę render().
 // Niektóre edytory mogą jeszcze cache'ować typy — użyjemy bezpiecznego dostępu.
@@ -18,32 +17,47 @@ if (bio[0]) {
 ---
 
 <MainLayout title="Maciej Witek — Strona oficjalna" description="Sylwetka naukowa, obszary badawcze, publikacje i kontakt.">
-  <section class="space-y-6">
-    <header class="space-y-2">
-      <h1 class="text-3xl font-bold tracking-tight">{person?.name ?? "Maciej Witek"}</h1>
-      <p class="text-slate-600 dark:text-slate-300">{person?.title ?? "Uniwersytet Szczeciński"}</p>
-    </header>
-
-    <article class="prose dark:prose-invert max-w-none">
-      {BioContent ? <BioContent /> : <p>Uzupełnij sekcję bio w <code>src/content/bio/</code>.</p>}
-    </article>
-
-    <section class="space-y-3">
-      <h2 class="text-xl font-semibold">Wybrane publikacje</h2>
-      {publications.length === 0 ? (
-        <p>Brak publikacji.</p>
-      ) : (
-        <ul class="list-disc pl-5 space-y-1">
-          {publications.sort((a,b) => (b.data.year ?? 0) - (a.data.year ?? 0)).slice(0,5).map((item) => (
-            <li>
-              <a href={item.data.link ?? '#'} class="underline decoration-slate-400 hover:decoration-slate-700">
-                {item.data.title}
-              </a>
-              {item.data.year ? ` (${item.data.year})` : ''}
-            </li>
-          ))}
-        </ul>
-      )}
-    </section>
+  <section class="bio-container">
+    <div class="bio-text">
+      <header class="space-y-2">
+        <h1 class="text-5xl font-bold tracking-tight">{person?.name ?? "Maciej Witek"}</h1>
+        <p class="text-2xl">{person?.title ?? "Uniwersytet Szczeciński"}</p>
+      </header>
+      <article class="prose dark:prose-invert max-w-none">
+        {BioContent ? <BioContent /> : <p>Uzupełnij sekcję bio w <code>src/content/bio/</code>.</p>}
+      </article>
+    </div>
+    {person?.image && (
+      <aside>
+        <img src={`${import.meta.env.BASE_URL}${person.image}`} alt={`Zdjęcie ${person.name}`} class="bio-image" />
+      </aside>
+    )}
   </section>
 </MainLayout>
+
+<style>
+  .bio-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .bio-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 2; /* Allow text to take more space */
+  }
+  .bio-container aside {
+    flex: 1;
+  }
+  .bio-image {
+    width: 100%;
+    max-width: 350px; /* 250px * 1.4 */
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-inline: auto;
+  }
+</style>

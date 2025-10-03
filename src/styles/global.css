@@ -6,10 +6,12 @@ html {
 
 :root {
   /* Custom properties previously defined in @theme */
-  --color-bg: #ffffff;
-  --color-fg: #0f172a; /* slate-900 */
-  --color-bg-dark: #0f172a; /* slate-900 */
-  --color-fg-dark: #f1f5f9; /* slate-100 */
+  --color-bg: #eab308; /* yellow-500 */
+  --color-fg: #000000; /* black */
+  --color-bg-dark: #eab308; /* yellow-500 */
+  --color-fg-dark: #000000; /* black */
+  --color-menu-bg: #facc15; /* yellow-400 */
+  --color-menu-bg-dark: #facc15; /* yellow-400 */
   --container: 72rem;
 }
 

@@ -6,6 +6,7 @@ const bio = defineCollection({
     name: z.string(),
     title: z.string(),
     email: z.string().email().optional(),
+    image: z.string().optional(),
   })
 })
 
@@ -17,14 +18,4 @@ const parts = defineCollection({
   })
 })
 
-const publications = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    year: z.number(),
-    authors: z.array(z.string()),
-    link: z.string().url().optional(),
-  })
-})
-
-export const collections = { bio, parts, publications }
+export const collections = { bio, parts }

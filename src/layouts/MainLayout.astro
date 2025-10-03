@@ -21,12 +21,22 @@ import MenuBar from "../components/MenuBar.astro";
     <meta property="og:type" content="website" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
-  <body class="min-h-screen bg-white text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-100">
+  <body class="min-h-screen antialiased">
     <MenuBar />
     <main class="main-content">
       <slot />
     </main>
     <style>
+      body {
+        background-color: var(--color-bg);
+        color: var(--color-fg);
+      }
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: var(--color-bg-dark);
+          color: var(--color-fg-dark);
+        }
+      }
       .main-content {
         max-width: var(--container, 72rem);
         margin-left: auto;
