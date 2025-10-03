@@ -5,6 +5,6 @@ email: maciej.witek@example.edu
 image: /images/20220819_192038_resized-300x297.jpg
 ---
 
-Witam na mojej stronie. Zajmuję się badaniami w obszarze [przykładowe obszary].
-
-Tutaj znajdziesz informacje o moich publikacjach, zainteresowaniach naukowych i sposobach kontaktu.
+I am a philosopher specializing in pragmatics and the philosophy of language.
+My research centers on adopting the Austinian framework to explore phenomena such as accommodation, irony, linguistic underdeterminacy, presuppositions, and meaning negotiation.
+My current research interests include an eliminativist perspective in metasemantics, as well as varieties of non-overt speech, including insinuation, strictly covert acts, and 'sneaky’ presuppositions.

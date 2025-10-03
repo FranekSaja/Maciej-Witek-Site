@@ -5,7 +5,7 @@ import path from 'path-browserify';
 
 const parts = await getCollection('parts');
 const tabs = [
-  { href: import.meta.env.BASE_URL, label: 'Start' },
+  { href: import.meta.env.BASE_URL, label: 'ABOUT' },
   ...parts.map((entry) => ({
     href: path.join(import.meta.env.BASE_URL, entry.slug),
     label: entry.data.title
@@ -91,6 +91,7 @@ const tabs = [
     text-align: left;
     font-size: 1rem;
     font-weight: 500;
+    text-transform: uppercase;
     color: var(--menu-text-light);
     text-decoration: none;
     transition: background-color 0.2s, color 0.2s;
