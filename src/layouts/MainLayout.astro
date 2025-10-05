@@ -22,7 +22,7 @@ import MenuBar from "../components/MenuBar.astro";
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body class="min-h-screen antialiased">
-    <MenuBar />
+    <MenuBar currentPage={Astro.url.pathname} />
     <main class="main-content slide-in">
       <slot />
     </main>

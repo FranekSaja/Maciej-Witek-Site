@@ -3,13 +3,28 @@
 import { getCollection } from 'astro:content';
 import path from 'path-browserify';
 
+export interface Props {
+  currentPage: string;
+}
+
+const { currentPage } = Astro.props;
+
 const parts = await getCollection('parts');
+const baseUrl = import.meta.env.BASE_URL;
+
+// Strona "ABOUT" jest aktywna, gdy ścieżka to "/" lub jest pusta
+const isAboutActive = currentPage === baseUrl || currentPage === `${baseUrl}/`;
+
 const tabs = [
-  { href: import.meta.env.BASE_URL, label: 'ABOUT' },
-  ...parts.map((entry) => ({
-    href: path.join(import.meta.env.BASE_URL, entry.slug),
-    label: entry.data.title
-  }))
+  { href: baseUrl, label: 'ABOUT', isActive: isAboutActive },
+  ...parts.map((entry) => {
+    const href = path.join(baseUrl, entry.slug);
+    return {
+      href,
+      label: entry.data.title,
+      isActive: href === currentPage
+    };
+  })
 ];
 ---
 
@@ -29,7 +44,7 @@ const tabs = [
     <ul class="menu-list">
       {tabs.map((t) => (
         <li>
-          <a href={t.href} class="menu-link">
+          <a href={t.href} class:list={["menu-link", { "is-active": t.isActive }]}>
             {t.label}
           </a>
         </li>
@@ -97,9 +112,17 @@ const tabs = [
     transition: background-color 0.2s, color 0.2s, transform 0.2s ease-out;
   }
 
+  .menu-link:hover,
+  .menu-link.is-active {
+    transform: scale(1.05) translateY(-2px);
+  }
+
   .menu-link:hover {
     background-color: #e0f2fe; /* light-blue */
-    transform: scale(1.05) translateY(-2px);
+  }
+
+  .menu-link.is-active {
+    background-color: var(--color-bg);
   }
 
   .menu-toggle {
@@ -154,6 +177,10 @@ const tabs = [
 
     .menu-link:hover {
       background-color: #0c4a6e; /* dark-blue */
+    }
+
+    .menu-link.is-active {
+      background-color: var(--color-bg-dark);
     }
 
     .menu-toggle {
