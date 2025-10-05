@@ -25,3 +25,19 @@ html {
 .prose img {
   border-radius: 0.5rem;
 }
+
+/* Animacja wsuwania się od dołu */
+@keyframes slide-in-from-bottom {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  animation: slide-in-from-bottom 0.7s ease-out forwards;
+}
