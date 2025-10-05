@@ -12,17 +12,19 @@ const { currentPage } = Astro.props;
 const parts = await getCollection('parts');
 const baseUrl = import.meta.env.BASE_URL;
 
-// Strona "ABOUT" jest aktywna, gdy ścieżka to "/" lub jest pusta
-const isAboutActive = currentPage === baseUrl || currentPage === `${baseUrl}/`;
+// Normalizujemy ścieżkę, usuwając końcowy ukośnik, jeśli istnieje i nie jest to root.
+const normalizedPath = currentPage.length > 1 && currentPage.endsWith('/')
+  ? currentPage.slice(0, -1)
+  : currentPage;
 
 const tabs = [
-  { href: baseUrl, label: 'ABOUT', isActive: isAboutActive },
+  { href: baseUrl, label: 'ABOUT', isActive: normalizedPath === baseUrl || normalizedPath === `${baseUrl}/` },
   ...parts.map((entry) => {
     const href = path.join(baseUrl, entry.slug);
     return {
       href,
       label: entry.data.title,
-      isActive: href === currentPage
+      isActive: href === normalizedPath
     };
   })
 ];
