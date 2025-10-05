@@ -29,7 +29,9 @@ if (bio[0]) {
     </div>
     {person?.image && (
       <aside>
-        <img src={`${import.meta.env.BASE_URL}${person.image}`} alt={`Zdjęcie ${person.name}`} class="bio-image" />
+        <div class="image-wrapper">
+          <img src={`${import.meta.env.BASE_URL}${person.image}`} alt={`Zdjęcie ${person.name}`} class="bio-image" />
+        </div>
       </aside>
     )}
   </section>
@@ -60,11 +62,17 @@ if (bio[0]) {
     flex: 1; /* Zdjęcie zajmuje 1x miejsca */
     max-width: 500px; /* Ograniczenie maksymalnego rozmiaru zdjęcia */
   }
+  .image-wrapper {
+    padding: 16px; /* Grubość ramki */
+    background: linear-gradient(to bottom, transparent 30%, white); /* Jeszcze więcej białego */
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-inline: auto;
+  }
   .bio-image {
     width: 100%;
     height: auto;
     border-radius: 50%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-inline: auto;
+    display: block;
   }
 </style>
