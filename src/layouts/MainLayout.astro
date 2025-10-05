@@ -38,16 +38,14 @@ import MenuBar from "../components/MenuBar.astro";
         }
       }
       .main-content {
-        max-width: var(--container, 72rem);
-        margin-left: auto;
-        margin-right: auto;
-        padding: 2.5rem 1rem;
+        /* Usunięto max-width i margin, aby kontener wypełniał dostępną przestrzeń */
+        padding: 2.5rem;
+        transition: margin-right 0.3s ease-in-out; /* Płynne przejście */
       }
 
-      @media (min-width: 769px) {
+      @media (min-width: 1200px) { /* Zsynchronizowano breakpoint z MenuBar */
         .main-content {
-          margin-right: calc(var(--menu-width-lg, 300px) + 2rem);
-          padding: 2.5rem;
+          margin-right: calc(var(--menu-width-lg) + 2rem);
         }
       }
     </style>

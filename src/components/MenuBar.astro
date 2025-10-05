@@ -40,7 +40,7 @@ const tabs = [
 
 <style>
   :root {
-    --menu-width-lg: 300px;
+    --menu-width-lg: clamp(280px, 20vw, 400px);
     --menu-width-sm: 280px;
     --menu-background-light: var(--color-menu-bg);
     --menu-background-dark: var(--color-menu-bg-dark);
@@ -107,7 +107,7 @@ const tabs = [
   }
 
   /* --- Style dla małych ekranów (Mobile) --- */
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     .menu-toggle {
       display: flex;
       align-items: center;

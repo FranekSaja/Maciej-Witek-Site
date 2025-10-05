@@ -20,7 +20,7 @@ if (bio[0]) {
   <section class="bio-container">
     <div class="bio-text">
       <header class="space-y-2">
-        <h1 class="text-5xl font-bold tracking-tight">{person?.name ?? "Maciej Witek"}</h1>
+        <h1 class="text-7xl font-bold tracking-tight">{person?.name ?? "Maciej Witek"}</h1>
         <p class="text-2xl">{person?.title ?? "Uniwersytet Szczeciński"}</p>
       </header>
       <article class="prose dark:prose-invert max-w-none">
@@ -39,22 +39,29 @@ if (bio[0]) {
   .bio-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 6rem;
     align-items: center;
     justify-content: center;
+    margin-top: 4rem;
+  }
+
+  @media (max-width: 992px) {
+    .bio-container {
+      flex-direction: column;
+    }
   }
   .bio-text {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    flex: 2; /* Allow text to take more space */
+    flex: 2; /* Tekst zajmuje 2x więcej miejsca */
   }
   .bio-container aside {
-    flex: 1;
+    flex: 1; /* Zdjęcie zajmuje 1x miejsca */
+    max-width: 500px; /* Ograniczenie maksymalnego rozmiaru zdjęcia */
   }
   .bio-image {
     width: 100%;
-    max-width: 350px; /* 250px * 1.4 */
     height: auto;
     border-radius: 50%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
