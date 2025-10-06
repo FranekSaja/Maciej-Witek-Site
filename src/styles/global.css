@@ -73,14 +73,13 @@ html {
 }
 
 .prose p a {
+  display: inline-block; /* Zapobiega łamaniu linku na dwie linie */
   font-weight: 600;
   text-decoration: none;
   background-color: #e0f2fe;
   padding: 0.2rem 0.4rem; /* Zwiększony padding pionowy */
   border-radius: 4px;
   transition: background-color 0.2s, color 0.2s;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone; /* Dla wsparcia starszych przeglądarek */
 }
 
 .prose p a:hover {
