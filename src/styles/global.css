@@ -71,3 +71,30 @@ html {
     color: var(--color-bg-dark);
   }
 }
+
+.prose p a {
+  font-weight: 600;
+  text-decoration: none;
+  background-color: #e0f2fe;
+  padding: 0.2rem 0.4rem; /* Zwiększony padding pionowy */
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone; /* Dla wsparcia starszych przeglądarek */
+}
+
+.prose p a:hover {
+  background-color: #0c4a6e;
+  color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  .prose p a {
+    background-color: #0c4a6e;
+    color: #e0f2fe;
+  }
+  .prose p a:hover {
+    background-color: #e0f2fe;
+    color: #0c4a6e;
+  }
+}
