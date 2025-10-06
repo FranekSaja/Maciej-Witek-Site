@@ -79,6 +79,11 @@ if (bio[0]) {
       });
 
       button.addEventListener('click', () => {
+        button.classList.add('press');
+        button.addEventListener('animationend', () => {
+          button.classList.remove('press');
+        }, { once: true });
+
         const valueToCopy = button.getAttribute('data-value');
         if (tooltip && valueToCopy) {
           navigator.clipboard.writeText(valueToCopy).then(() => {
