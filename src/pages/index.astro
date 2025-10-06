@@ -73,8 +73,9 @@ if (bio[0]) {
       });
 
       button.addEventListener('mouseleave', () => {
-        if (tooltip && !tooltip.classList.contains('copied')) {
-          tooltip.classList.remove('visible');
+        if (tooltip) {
+          tooltip.classList.remove('visible', 'copied');
+          clearTimeout(timeoutId);
         }
       });
 
@@ -92,14 +93,13 @@ if (bio[0]) {
             clearTimeout(timeoutId);
             
             timeoutId = window.setTimeout(() => {
-              tooltip.classList.remove('visible', 'copied');
-              // Sprawdź, czy kursor nadal jest nad przyciskiem
+              tooltip.classList.remove('copied');
               if (button.matches(':hover')) {
                 tooltip.textContent = valueToCopy;
-                tooltip.classList.add('visible');
+              } else {
+                tooltip.classList.remove('visible');
               }
             }, 1500);
-
           }).catch(err => {
             console.error('Failed to copy text: ', err);
             tooltip.textContent = 'Copy failed!';
