@@ -1,0 +1,42 @@
+---
+import { Icon } from 'astro-icon/components';
+
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'button'> {
+	iconName: string;
+	valueToCopy: string;
+}
+
+const { iconName, valueToCopy, ...rest } = Astro.props;
+---
+
+<button class="contact-icon" data-value={valueToCopy} {...rest}>
+    <Icon name={iconName} />
+</button>
+
+<style>
+    .contact-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid white;
+        background-color: transparent;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+        color: white;
+    }
+
+    .contact-icon:hover {
+        background-color: white;
+        color: black;
+    }
+
+    .contact-icon > :global(svg) {
+        width: 24px;
+        height: 24px;
+    }
+</style>

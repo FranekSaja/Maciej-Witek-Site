@@ -1,0 +1,25 @@
+---
+interface Props {
+    defaultText?: string;
+}
+
+const { defaultText = "" } = Astro.props;
+---
+
+<p id="contact-tooltip" class="tooltip-text">{defaultText}</p>
+
+<style>
+    .tooltip-text {
+            color: white;
+            text-align: center;
+            min-height: 1.5em; /* Reserve space to avoid layout shift */
+            margin-top: 0.5rem;
+            font-style: italic;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+    
+        .tooltip-text.visible {
+            opacity: 1;
+        }
+</style>

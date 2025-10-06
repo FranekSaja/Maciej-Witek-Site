@@ -8,6 +8,20 @@ const bio = defineCollection({
     email: z.string().email().optional(),
     image: z.string().optional(),
     cv_url: z.string().optional(),
+    contact: z.object({
+      phone: z.object({
+        value: z.string(),
+        icon: z.string(),
+      }),
+      email: z.object({
+        value: z.string().email(),
+        icon: z.string(),
+      }),
+      address: z.object({
+        value: z.string(),
+        icon: z.string(),
+      }),
+    }).optional(),
   })
 })
 

@@ -2,13 +2,14 @@ import { defineConfig, envField } from 'astro/config'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@tailwindcss/vite'
+import icon from 'astro-icon'
 
 // Uzupełnij 'site' docelowym adresem produkcyjnym (wymagane m.in. dla sitemap)
 export default defineConfig({
   site: 'https://FranekSaja.github.io/r3bq9m1z8t2w4ny',
   base: '/r3bq9m1z8t2w4ny',
   output: 'static',
-  integrations: [mdx(), sitemap()],
+  integrations: [mdx(), sitemap(), icon()],
   vite: { plugins: [tailwind()] },
   image: {
     // Dodaj dozwolone hosty dla zdalnych obrazów, kiedy będą potrzebne
