@@ -32,12 +32,11 @@ const tabs = [
 
 <!-- Przycisk przełączający menu, widoczny tylko na małych ekranach -->
 <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
-  <svg class="hamburger-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <svg class="hamburger-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <line x1="3" y1="12" x2="21" y2="12"></line>
     <line x1="3" y1="6" x2="21" y2="6"></line>
     <line x1="3" y1="18" x2="21" y2="18"></line>
   </svg>
-  <span class="menu-toggle-text">Menu</span>
 </button>
 
 <!-- Kontener menu -->
@@ -58,7 +57,7 @@ const tabs = [
 <style>
   :root {
     --menu-width-lg: clamp(220px, 20vw, 400px);
-    --menu-width-sm: 280px;
+    --menu-width-sm: 250px; /* Zwężone menu mobilne */
     --menu-background-light: var(--color-menu-bg);
     --menu-background-dark: var(--color-menu-bg-dark);
     --menu-border-light: #e2e8f0;     /* slate-200 */
@@ -134,18 +133,14 @@ const tabs = [
   /* --- Style dla małych ekranów (Mobile) --- */
   @media (max-width: 1400px) {
     .menu-toggle {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      display: block; /* Zmieniono na block dla pozycjonowania ikon */
       position: fixed;
       top: 1rem;
       right: 1rem;
       z-index: 1001;
-      background-color: var(--menu-toggle-bg-light);
-      backdrop-filter: blur(4px);
-      border: 1px solid var(--menu-border-light);
-      border-radius: 8px;
-      padding: 0.5rem 1rem;
+      background-color: transparent;
+      border: none;
+      padding: 0.5rem;
       cursor: pointer;
       font-size: 1rem;
       color: var(--menu-text-light);
@@ -159,6 +154,20 @@ const tabs = [
       border-left: none;
       border-right: 1px solid var(--menu-border-light);
       padding: 4rem 0;
+    }
+
+    .menu-toggle .menu-toggle-text {
+      display: none; /* Ukrycie tekstu "Menu" */
+    }
+
+    .menu-toggle .hamburger-icon,
+    .menu-toggle .close-icon {
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+
+
+    .menu-list li a {
+      font-size: 1.2rem; /* Mniejsza czcionka w menu mobilnym */
     }
 
     .menu-container.is-open {
@@ -194,16 +203,50 @@ const tabs = [
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const menuToggle = document.getElementById('menu-toggle');
-    const menuContainer = document.getElementById('menu-container');
+  const menuToggle = document.getElementById('menu-toggle');
+  const menuContainer = document.getElementById('menu-container');
 
-    if (menuToggle && menuContainer) {
-      menuToggle.addEventListener('click', () => {
-        menuContainer.classList.toggle('is-open');
-        const isOpen = menuContainer.classList.contains('is-open');
-        menuToggle.setAttribute('aria-expanded', isOpen.toString());
-      });
+  function openMenu() {
+    if (!menuToggle || !menuContainer) return;
+    menuContainer.classList.add('is-open');
+    menuToggle.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeMenu() {
+    if (!menuToggle || !menuContainer) return;
+    menuContainer.classList.remove('is-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  function handleMenu() {
+    if (!menuContainer) return;
+    if (menuContainer.classList.contains('is-open')) {
+      closeMenu();
+    } else {
+      openMenu();
     }
-  });
+  }
+
+  function setupMenu() {
+    if (!menuToggle || !menuContainer) return;
+
+    menuToggle.addEventListener('click', handleMenu);
+
+    // Zamykanie po kliknięciu na link
+    const menuLinks = menuContainer.querySelectorAll('a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Zamykanie po kliknięciu poza menu
+    document.addEventListener('click', (event) => {
+      if (!menuContainer.contains(event.target as Node) && !menuToggle.contains(event.target as Node) && menuContainer.classList.contains('is-open')) {
+        closeMenu();
+      }
+    });
+  }
+
+  // Inicjalizacja na start i po każdej zmianie strony
+  document.addEventListener('DOMContentLoaded', setupMenu);
+  document.addEventListener('astro:page-load', setupMenu);
 </script>
