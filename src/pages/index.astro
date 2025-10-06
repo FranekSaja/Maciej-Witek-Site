@@ -43,9 +43,15 @@ if (bio[0]) {
     display: flex;
     flex-wrap: wrap;
     gap: 6rem;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     margin-top: 4rem;
+  }
+
+  @media (min-width: 992px) and (max-width: 1400px) {
+    .bio-container {
+      justify-content: space-between;
+    }
   }
 
   @media (max-width: 992px) {
@@ -75,5 +81,15 @@ if (bio[0]) {
     height: auto;
     border-radius: 50%;
     display: block;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 3rem; /* Tailwind's text-5xl */
+      line-height: 1;
+    }
+    p {
+      font-size: 1.25rem; /* Tailwind's text-xl */
+    }
   }
 </style>
