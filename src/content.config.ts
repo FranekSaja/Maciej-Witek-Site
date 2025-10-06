@@ -7,6 +7,7 @@ const bio = defineCollection({
     title: z.string(),
     email: z.string().email().optional(),
     image: z.string().optional(),
+    cv_url: z.string().optional(),
   })
 })
 
