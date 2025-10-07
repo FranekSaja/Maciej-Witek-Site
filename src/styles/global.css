@@ -1,24 +1,18 @@
 @import "tailwindcss";
 
 html {
-  color-scheme: light dark;
+  color-scheme: dark;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
 }
 
 :root {
-  /* Custom properties previously defined in @theme */
-  /* Light Mode Palette */
-  --color-bg: #FDFBF7; /* Soft off-white */
-  --color-fg: #192A3E; /* Dark navy text */
-  --color-menu-bg: #0343aa; /* Deep teal */
-  --color-menu-fg: #FFFFFF; /* White text for menu */
-  --color-link: #0056b3; /* Standard link blue */
-
   /* Dark Mode Palette */
-  --color-bg-dark: #192A3E; /* Dark navy background */
-  --color-fg-dark: #FDFBF7; /* Soft off-white text */
-  --color-menu-bg-dark: #2a3c6b; /* Slightly darker teal */
-  --color-menu-fg-dark: #FFFFFF; /* White text for menu */
-  --color-link-dark: #66a3ff; /* Lighter blue for dark mode links */
+  --color-bg: #192A3E; /* Dark navy background */
+  --color-fg: #FDFBF7; /* Soft off-white text */
+  --color-menu-bg: #2a3c6b; /* Slightly darker teal */
+  --color-menu-fg: #FFFFFF; /* White text for menu */
+  --color-link: #66a3ff; /* Lighter blue for dark mode links */
   --container: 72rem;
 }
 
@@ -61,17 +55,6 @@ html {
   color: var(--color-bg);
 }
 
-@media (prefers-color-scheme: dark) {
-  .cv-button {
-    border-color: var(--color-fg-dark);
-    color: var(--color-fg-dark);
-  }
-  .cv-button:hover {
-    background-color: var(--color-fg-dark);
-    color: var(--color-bg-dark);
-  }
-}
-
 .prose p a {
   display: inline-block; /* Zapobiega łamaniu linku na dwie linie */
   font-weight: 600;
@@ -87,13 +70,11 @@ html {
   color: white;
 }
 
-@media (prefers-color-scheme: dark) {
-  .prose p a {
-    background-color: #0c4a6e;
-    color: #e0f2fe;
-  }
-  .prose p a:hover {
-    background-color: #e0f2fe;
-    color: #0c4a6e;
-  }
+.prose p a {
+  background-color: #0c4a6e;
+  color: #e0f2fe;
+}
+.prose p a:hover {
+  background-color: #e0f2fe;
+  color: #0c4a6e;
 }

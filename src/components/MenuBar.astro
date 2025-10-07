@@ -58,16 +58,9 @@ const tabs = [
   :root {
     --menu-width-lg: clamp(220px, 20vw, 400px);
     --menu-width-sm: 250px; /* Zwężone menu mobilne */
-    --menu-background-light: var(--color-menu-bg);
-    --menu-background-dark: var(--color-menu-bg-dark);
-    --menu-border-light: #e2e8f0;     /* slate-200 */
-    --menu-border-dark: #334155;      /* slate-700 */
-    --menu-text-light: var(--color-fg);
-    --menu-text-dark: var(--color-fg-dark);
-    --menu-link-hover-bg-light: #e2e8f0; /* slate-200 */
-    --menu-link-hover-bg-dark: #334155;  /* slate-700 */
-    --menu-toggle-bg-light: rgba(255, 255, 255, 0.8);
-    --menu-toggle-bg-dark: rgba(30, 41, 59, 0.8);
+    --menu-border: #334155;      /* slate-700 */
+    --menu-link-hover-bg: #334155;  /* slate-700 */
+    --menu-toggle-bg: rgba(30, 41, 59, 0.8);
   }
 
   /* --- Style dla dużych ekranów (Desktop) --- */
@@ -79,8 +72,8 @@ const tabs = [
     width: var(--menu-width-lg);
     display: flex;
     flex-direction: column;
-    background-color: var(--menu-background-light);
-    border-left: 1px solid var(--menu-border-light);
+    background-color: var(--color-menu-bg);
+    border-left: 1px solid var(--menu-border);
     z-index: 1000;
     transition: transform 0.3s ease-in-out;
     padding: 2rem 0;
@@ -108,7 +101,7 @@ const tabs = [
     font-size: 1.575rem;
     font-weight: 500;
     text-transform: uppercase;
-    color: var(--menu-text-light);
+    color: var(--color-fg);
     text-decoration: none;
     transition: background-color 0.2s, color 0.2s, transform 0.2s ease-out;
   }
@@ -143,7 +136,7 @@ const tabs = [
       padding: 0.5rem;
       cursor: pointer;
       font-size: 1rem;
-      color: var(--menu-text-light);
+      color: var(--color-fg);
     }
 
     .menu-container {
@@ -152,7 +145,7 @@ const tabs = [
       width: var(--menu-width-sm);
       transform: translateX(-100%);
       border-left: none;
-      border-right: 1px solid var(--menu-border-light);
+      border-right: 1px solid var(--menu-border);
       padding: 4rem 0;
     }
 
@@ -175,30 +168,18 @@ const tabs = [
     }
   }
 
-  /* --- Dark Mode Styles --- */
-  @media (prefers-color-scheme: dark) {
-    .menu-container {
-      background-color: var(--menu-background-dark);
-      border-color: var(--menu-border-dark);
-    }
+  .menu-link:hover {
+    background-color: #0c4a6e; /* dark-blue */
+  }
 
-    .menu-link {
-      color: var(--menu-text-dark);
-    }
+  .menu-link.is-active {
+    background-color: var(--color-bg);
+  }
 
-    .menu-link:hover {
-      background-color: #0c4a6e; /* dark-blue */
-    }
-
-    .menu-link.is-active {
-      background-color: var(--color-bg-dark);
-    }
-
-    .menu-toggle {
-      background-color: var(--menu-toggle-bg-dark);
-      border-color: var(--menu-border-dark);
-      color: var(--menu-text-dark);
-    }
+  .menu-toggle {
+    background-color: var(--menu-toggle-bg);
+    border-color: var(--menu-border);
+    color: var(--color-fg);
   }
 </style>
 
