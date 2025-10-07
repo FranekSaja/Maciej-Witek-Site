@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-
+import { ICON_SIZE } from '../config';
 import type { HTMLAttributes } from 'astro/types';
 
 interface Props extends HTMLAttributes<'button'> {
@@ -12,8 +12,8 @@ const { iconName, valueToCopy, ...rest } = Astro.props;
 ---
 
 <button class="contact-button" data-value={valueToCopy} {...rest}>
-    <div class="icon-global icon-container">
-        <Icon name={iconName} />
+    <div class="icon-global">
+        <Icon name={iconName} size={ICON_SIZE} />
     </div>
     <span class="contact-value">{valueToCopy}</span>
 </button>

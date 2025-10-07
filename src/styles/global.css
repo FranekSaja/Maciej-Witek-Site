@@ -109,8 +109,4 @@ html {
   color: black;
 }
 
-/* Nowa, uniwersalna klasa do kontrolowania rozmiaru ikon */
-.icon-container :global(svg) {
-  width: 72px !important;
-  height: 72px !important;
-}
+/* Usunięto klasę .icon-container, ponieważ rozmiar jest teraz definiowany w komponentach za pomocą zmiennej globalnej */
