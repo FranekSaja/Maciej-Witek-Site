@@ -1,0 +1,27 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const hiddenPages = await getCollection("hidden");
+  return hiddenPages.map((entry) => ({ params: { hidden: entry.slug } }));
+}
+
+const { hidden } = Astro.params;
+const hiddenPages = await getCollection("hidden");
+const entry = hiddenPages.find((p) => p.slug === hidden);
+
+if (!entry) {
+  return Astro.redirect("/404");
+}
+
+const { Content } = await entry.render();
+---
+<MainLayout title={`Maciej Witek — ${entry.data.title}`} description={`Podstrona ${entry.data.title}`}>
+  <section class="space-y-6">
+    <article class="prose dark:prose-invert max-w-none">
+      <h1 class="text-3xl font-bold tracking-tight">{entry.data.title}</h1>
+      <Content />
+    </article>
+  </section>
+</MainLayout>

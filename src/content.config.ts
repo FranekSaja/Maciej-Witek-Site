@@ -33,4 +33,11 @@ const parts = defineCollection({
   })
 })
 
-export const collections = { bio, parts }
+const hidden = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string()
+  })
+})
+
+export const collections = { bio, parts, hidden }
