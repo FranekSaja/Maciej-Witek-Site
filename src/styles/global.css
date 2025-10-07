@@ -56,25 +56,61 @@ html {
 }
 
 .prose p a {
-  display: inline-block; /* Zapobiega łamaniu linku na dwie linie */
+  display: inline-block;
   font-weight: 600;
   text-decoration: none;
-  background-color: #e0f2fe;
-  padding: 0.2rem 0.4rem; /* Zwiększony padding pionowy */
+  background-color: #0c4a6e; /* Błękitne tło */
+  color: #e0f2fe; /* Granatowy tekst */
+  padding: 0.2rem 0.4rem;
   border-radius: 4px;
   transition: background-color 0.2s, color 0.2s;
 }
-
 .prose p a:hover {
-  background-color: #0c4a6e;
+  background-color: #e0f2fe; /* Granatowe tło */
+  color: #0c4a6e; /* Błękitny tekst */
+}
+
+.h1-global {
+  font-size: 4.5rem; /* text-7xl */
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.h2-global {
+  font-size: 1.5rem; /* text-2xl */
+}
+
+@media (max-width: 768px) {
+  .h1-global {
+    font-size: 3rem;
+    line-height: 1;
+  }
+  .h2-global {
+    font-size: 1.25rem;
+  }
+}
+
+.icon-global {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid white;
+  background-color: transparent;
+  transition: background-color 0.3s, color 0.3s;
   color: white;
+  flex-shrink: 0;
 }
 
-.prose p a {
-  background-color: #0c4a6e;
-  color: #e0f2fe;
+.icon-global:hover {
+  background-color: white;
+  color: black;
 }
-.prose p a:hover {
-  background-color: #e0f2fe;
-  color: #0c4a6e;
+
+/* Nowa, uniwersalna klasa do kontrolowania rozmiaru ikon */
+.icon-container :global(svg) {
+  width: 72px !important;
+  height: 72px !important;
 }

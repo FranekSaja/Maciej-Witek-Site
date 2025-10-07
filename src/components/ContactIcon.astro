@@ -12,7 +12,7 @@ const { iconName, valueToCopy, ...rest } = Astro.props;
 ---
 
 <button class="contact-button" data-value={valueToCopy} {...rest}>
-    <div class="icon-wrapper">
+    <div class="icon-global icon-container">
         <Icon name={iconName} />
     </div>
     <span class="contact-value">{valueToCopy}</span>
@@ -31,28 +31,10 @@ const { iconName, valueToCopy, ...rest } = Astro.props;
         font-family: inherit;
     }
 
-    .icon-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        border: 1px solid white;
-        background-color: transparent;
-        transition: background-color 0.3s, color 0.3s;
-        color: white;
-        flex-shrink: 0; /* Zapobiega rozciąganiu/kurczeniu się elementu */
-    }
-
+    /* Usunięto style dla .icon-wrapper i .icon-wrapper > :global(svg), ponieważ są teraz w global.css */
     .contact-button:hover .icon-wrapper {
         background-color: white;
         color: black;
-    }
-
-    .icon-wrapper > :global(svg) {
-        width: 24px;
-        height: 24px;
     }
 
     .contact-value {

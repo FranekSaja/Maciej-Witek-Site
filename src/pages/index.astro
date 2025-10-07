@@ -24,8 +24,8 @@ if (bio[0]) {
     <section class="bio-container">
       <div class="bio-text">
         <header class="space-y-2">
-          <h1 class="text-7xl font-bold tracking-tight">{person?.name ?? "Maciej Witek"}</h1>
-          <p class="text-2xl">{person?.title ?? "Uniwersytet Szczeciński"}</p>
+          <h1 class="h1-global">{person?.name ?? "Maciej Witek"}</h1>
+          <p class="h2-global">{person?.title ?? "Uniwersytet Szczeciński"}</p>
         </header>
 
         <!-- Kopia zdjęcia (tylko dla widoku mobilnego) -->
@@ -235,13 +235,5 @@ if (bio[0]) {
     }
   }
 
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 3rem;
-      line-height: 1;
-    }
-    p {
-      font-size: 1.25rem;
-    }
-  }
+  /* Usunięto style dla h1 i p, ponieważ są teraz w global.css */
 </style>
