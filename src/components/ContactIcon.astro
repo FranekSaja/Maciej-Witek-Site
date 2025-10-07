@@ -11,28 +11,69 @@ interface Props extends HTMLAttributes<'button'> {
 const { iconName, valueToCopy, ...rest } = Astro.props;
 ---
 
-<button class="contact-icon" data-value={valueToCopy} {...rest}>
-    <Icon name={iconName} />
+<button class="contact-button" data-value={valueToCopy} {...rest}>
+    <div class="icon-wrapper">
+        <Icon name={iconName} />
+    </div>
+    <span class="contact-value">{valueToCopy}</span>
 </button>
 
 <style>
-    .contact-icon {
+    .contact-button {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        color: white;
+        padding: 0;
+        font-family: inherit;
+    }
+
+    .icon-wrapper {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        border: 2px solid white;
+        border: 1px solid white;
         background-color: transparent;
-        cursor: pointer;
         transition: background-color 0.3s, color 0.3s;
         color: white;
+        flex-shrink: 0; /* Zapobiega rozciąganiu/kurczeniu się elementu */
     }
 
-    .contact-icon:hover {
+    .contact-button:hover .icon-wrapper {
         background-color: white;
         color: black;
+    }
+
+    .icon-wrapper > :global(svg) {
+        width: 24px;
+        height: 24px;
+    }
+
+    .contact-value {
+        display: none; /* Ukryty domyślnie na dużych ekranach */
+        font-weight: bold;
+        font-size: 0.9rem; /* Zmniejszona czcionka */
+    }
+
+    /* Na małych ekranach pokazujemy tekst */
+    @media (max-width: 992px) {
+        .contact-button {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            width: 100%;
+            gap: 1rem;
+        }
+        .contact-value {
+            display: inline;
+            text-align: left;
+        }
     }
 
     .contact-icon > :global(svg) {

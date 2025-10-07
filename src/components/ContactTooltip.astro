@@ -18,6 +18,12 @@ const { defaultText = "" } = Astro.props;
             opacity: 0;
             transition: opacity 0.3s ease-in-out;
         }
+
+        @media (max-width: 992px) {
+            .tooltip-text {
+                display: none;
+            }
+        }
     
         .tooltip-text.visible {
             opacity: 1;

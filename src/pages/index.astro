@@ -59,53 +59,60 @@ if (bio[0]) {
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const tooltip = document.getElementById('contact-tooltip');
-    const contactButtons = document.querySelectorAll('.contact-icon');
-    const defaultTooltipText = tooltip?.textContent ?? '';
+    const contactButtons = document.querySelectorAll('.contact-button');
 
     contactButtons.forEach(button => {
-      let timeoutId: number;
+      const valueSpan = button.querySelector('.contact-value');
+      const originalText = button.getAttribute('data-value');
+      let copyTimeout: any = null;
 
+      // Pokaż tooltip na desktopie
       button.addEventListener('mouseenter', () => {
-        if (tooltip && !tooltip.classList.contains('copied')) {
-          tooltip.textContent = button.getAttribute('data-value');
+        if (tooltip && window.innerWidth > 768 && !copyTimeout) {
+          tooltip.textContent = originalText;
           tooltip.classList.add('visible');
         }
       });
 
+      // Ukryj tooltip na desktopie
       button.addEventListener('mouseleave', () => {
-        if (tooltip) {
-          tooltip.classList.remove('visible', 'copied');
-          clearTimeout(timeoutId);
+        if (tooltip && window.innerWidth > 768 && !copyTimeout) {
+          tooltip.classList.remove('visible');
         }
       });
 
+      // Logika kopiowania po kliknięciu
       button.addEventListener('click', () => {
-        button.classList.add('press');
-        button.addEventListener('animationend', () => {
-          button.classList.remove('press');
-        }, { once: true });
+        if (!originalText) return;
 
-        const valueToCopy = button.getAttribute('data-value');
-        if (tooltip && valueToCopy) {
-          navigator.clipboard.writeText(valueToCopy).then(() => {
+        navigator.clipboard.writeText(originalText).then(() => {
+          // Wyczyść poprzedni timer, jeśli istnieje
+          clearTimeout(copyTimeout);
+
+          // Ustaw tekst na "Copied!"
+          if (valueSpan) valueSpan.textContent = 'Copied!';
+          if (tooltip && window.innerWidth > 768) {
             tooltip.textContent = 'Copied!';
-            tooltip.classList.add('visible', 'copied');
-            clearTimeout(timeoutId);
+            tooltip.classList.add('visible');
+          }
+
+          // Ustaw timer do przywrócenia oryginalnego stanu
+          copyTimeout = setTimeout(() => {
+            if (valueSpan) valueSpan.textContent = originalText;
             
-            timeoutId = window.setTimeout(() => {
-              tooltip.classList.remove('copied');
+            if (tooltip && window.innerWidth > 768) {
               if (button.matches(':hover')) {
-                tooltip.textContent = valueToCopy;
+                tooltip.textContent = originalText; // Jeśli kursor wciąż jest nad przyciskiem
               } else {
                 tooltip.classList.remove('visible');
               }
-            }, 1500);
-          }).catch(err => {
-            console.error('Failed to copy text: ', err);
-            tooltip.textContent = 'Copy failed!';
-            tooltip.classList.add('visible');
-          });
-        }
+            }
+            copyTimeout = null; // Zresetuj stan timera
+          }, 1500);
+
+        }).catch(err => {
+          console.error('Failed to copy text: ', err);
+        });
       });
     });
   });
@@ -175,6 +182,21 @@ if (bio[0]) {
     }
     .bio-text, .bio-container aside {
       align-self: auto;
+    }
+    .bio-container aside {
+      width: 100%; /* Zamrożenie szerokości kontenera */
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .contact-icons-container {
+      flex-direction: column;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      width: 100%;
+      padding-left: 0; /* Dosunięcie do lewej krawędzi */
     }
   }
 
