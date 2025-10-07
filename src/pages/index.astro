@@ -27,12 +27,30 @@ if (bio[0]) {
           <h1 class="text-7xl font-bold tracking-tight">{person?.name ?? "Maciej Witek"}</h1>
           <p class="text-2xl">{person?.title ?? "Uniwersytet Szczeciński"}</p>
         </header>
+
+        <!-- Kopia zdjęcia (tylko dla widoku mobilnego) -->
+        {person?.image && (
+          <div class="image-wrapper hide-on-desktop">
+            <img src={`${import.meta.env.BASE_URL}${person.image}`} alt={`Zdjęcie ${person.name}`} class="bio-image" />
+          </div>
+        )}
+
         <article class="prose dark:prose-invert max-w-none">
           {BioContent ? <BioContent components={{ CvButton }} /> : <p>Uzupełnij sekcję bio w <code>src/content/bio/</code>.</p>}
         </article>
+
+        <!-- Kopia kontaktów (tylko dla widoku mobilnego) -->
+        {person.contact && (
+          <div class="contact-icons-container hide-on-desktop">
+            <ContactIcon iconName="mdi:phone" valueToCopy={person.contact.phone.value} id="contact-phone-mobile" />
+            <ContactIcon iconName="mdi:envelope" valueToCopy={person.contact.email.value} id="contact-email-mobile" />
+            <ContactIcon iconName="mdi:home" valueToCopy={person.contact.address.value} id="contact-address-mobile" />
+          </div>
+        )}
       </div>
+
       {person?.image && (
-        <aside>
+        <aside class="hide-on-mobile">
           <div class="image-wrapper">
             <img src={`${import.meta.env.BASE_URL}${person.image}`} alt={`Zdjęcie ${person.name}`} class="bio-image" />
           </div>
@@ -175,17 +193,34 @@ if (bio[0]) {
     }
   }
 
+  .hide-on-desktop {
+    display: none;
+  }
+
   @media (max-width: 992px) {
+    .hide-on-mobile {
+      display: none !important; /* Używamy !important, aby nadpisać inne style */
+    }
+    .hide-on-desktop {
+      display: block; /* Używamy block dla kontenerów */
+    }
     .bio-container {
       flex-direction: column;
       align-items: center;
     }
-    .bio-text, .bio-container aside {
-      align-self: auto;
+    .bio-text {
+      width: 100%;
     }
-    .bio-container aside {
-      width: 100%; /* Zamrożenie szerokości kontenera */
+    /* Dodatkowe style dla skopiowanych elementów w widoku mobilnym */
+    .bio-text .image-wrapper {
+      margin-bottom: 2rem;
+    }
+    .bio-text .contact-icons-container {
+      display: flex; /* Musimy zdefiniować flex, aby działało */
+      margin-top: 2rem;
+      flex-direction: column;
       align-items: flex-start;
+      gap: 1.5rem;
     }
   }
 
