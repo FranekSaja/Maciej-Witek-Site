@@ -15,13 +15,15 @@ if (!entry) {
   return Astro.redirect("/404");
 }
 
+import H1 from '@components/mdx/H1.astro';
+import H2 from '@components/mdx/H2.astro';
+
 const { Content } = await entry.render();
 ---
 <MainLayout title={`Maciej Witek — ${entry.data.title}`} description={`Podstrona ${entry.data.title}`}>
   <section class="space-y-6">
     <article class="prose dark:prose-invert max-w-none">
-      <h1 class="text-3xl font-bold tracking-tight">{entry.data.title}</h1>
-      <Content />
+      <Content components={{ h1: H1, h2: H2 }} />
     </article>
   </section>
 </MainLayout>

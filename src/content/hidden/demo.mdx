@@ -1,15 +1,72 @@
 ---
 title: "Dokumentacja"
 ---
-import ContactIcon from '../../components/ContactIcon.astro';
+import Icon from '../../components/Icon.astro';
 
-<h1 class="h1-global">Przykładowy Nagłówek</h1>
-<h2 class="h2-global">Przykładowy podtytuł</h2>
+# Dokumentacja
+
+Cała treść strony powinna być edytowana w plikach `.mdx` (markdown), bez konieczności edytowania plików z kodem strony lub plików z konfiguracją CSS strony
+
+&nbsp;
+
+Klasy CSS dla powtarzających się elementów strony zostały globalnie nadane w pliku `global.css`. Tak samo kolory. Daje to możliwość szybkiego dodawania nowych, niestandardowych elementów strony z poziomu plików `.mdx`, bez konieczności pisania CSS. Zostały też wykorzystane komponenty `.astro`, takie jak `Icon`. Poniżej znajdują się przykłady użycia gotowych elementów ostylowanych zewnętrznie w `global.css`, oraz instrukcja. Całość treści tej strony znajduje się w pliku `content/hidden/demo.mdx` w katalogu z kodem strony.
+
+# Przykładowy Nagłówek H1
+
+&nbsp;
+
+## Przykładowy podtytuł H2
+
+&nbsp;
+
+Przykładowe ikonki :
 
 <div class="flex gap-4 my-8">
-    <ContactIcon iconName="mdi:phone" valueToCopy="123-456-789" />
-    <ContactIcon iconName="mdi:envelope" valueToCopy="example@email.com" />
-    <ContactIcon iconName="mdi:home" valueToCopy="Example Address" />
+    <Icon name="mdi:github" bordered={true} />
+    <Icon name="mdi:linkedin" bordered={true} />
+    <Icon name="mdi:twitter" bordered={true} />
 </div>
 
-<a href="/" class="link-global">Link do strony About</a>
+Przykładowy link : [Link do strony About](/)
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
+## Instrukcja użycia :
+
+Markdown to prosty język formatowania tekstu, który pozwala w łatwy sposób tworzyć nagłówki, linki i inne elementy strony bez konieczności pisania CSS lub HTML. Poniżej przedstawiono podstawowe zasady użycia elementów w plikach `.mdx`:
+
+1. **Tworzenie nagłówków**
+
+   - **Nagłówek H1**  
+     Aby utworzyć nagłówek pierwszego poziomu (H1), należy postawić znak `#` na początku linijki, a następnie wpisać tekst nagłówka.  
+     **Przykład:**  
+     ```markdown
+     # To jest nagłówek H1
+     ```
+
+   - **Nagłówek H2**  
+     Aby utworzyć nagłówek drugiego poziomu (H2), należy postawić dwa znaki `##` na początku linijki.  
+     **Przykład:**  
+     ```markdown
+     ## To jest nagłówek H2
+     ```
+
+2. **Tworzenie linków**
+
+   Aby zamienić fragment tekstu w link, należy:
+   - Umieścić tekst w nawiasach kwadratowych `[ ]`
+   - Bezpośrednio po nich podać adres strony w nawiasach okrągłych `( )`  
+
+   **Przykład:**  
+   ```markdown
+   [YouTube](https://www.youtube.com)
+   ```
+   efekt : [YouTube](https://www.youtube.com)
+   

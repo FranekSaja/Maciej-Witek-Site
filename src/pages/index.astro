@@ -4,6 +4,8 @@ import { getCollection } from "astro:content";
 import CvButton from "@components/CvButton.astro";
 import ContactIcon from "@components/ContactIcon.astro";
 import ContactTooltip from "@components/ContactTooltip.astro";
+import H1 from '@components/mdx/H1.astro';
+import H2 from '@components/mdx/H2.astro';
 
 const bio = await getCollection("bio");
 const person = bio[0]?.data;
@@ -36,7 +38,7 @@ if (bio[0]) {
         )}
 
         <article class="prose dark:prose-invert max-w-none">
-          {BioContent ? <BioContent components={{ CvButton }} /> : <p>Uzupełnij sekcję bio w <code>src/content/bio/</code>.</p>}
+          {BioContent ? <BioContent components={{ CvButton, h1: H1, h2: H2 }} /> : <p>Uzupełnij sekcję bio w <code>src/content/bio/</code>.</p>}
         </article>
 
         <!-- Kopia kontaktów (tylko dla widoku mobilnego) -->

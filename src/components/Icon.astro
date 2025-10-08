@@ -1,0 +1,33 @@
+---
+import { Icon as AstroIcon } from 'astro-icon/components';
+import { ICON_SIZE } from '../config';
+
+interface Props {
+    name: string;
+    size?: number;
+    bordered?: boolean;
+}
+const { name, size = ICON_SIZE, bordered = false, ...rest } = Astro.props;
+---
+<div class:list={["icon-wrapper", { "bordered": bordered }]}>
+    <AstroIcon name={name} size={size} {...rest} />
+</div>
+
+<style>
+    .icon-wrapper {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .icon-wrapper.bordered {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 1px solid white;
+    }
+    .icon-wrapper.bordered:hover {
+        background-color: white;
+        color: black;
+    }
+</style>

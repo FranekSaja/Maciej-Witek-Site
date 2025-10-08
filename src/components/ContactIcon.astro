@@ -1,6 +1,5 @@
 ---
-import { Icon } from 'astro-icon/components';
-import { ICON_SIZE } from '../config';
+import Icon from './Icon.astro';
 import type { HTMLAttributes } from 'astro/types';
 
 interface Props extends HTMLAttributes<'button'> {
@@ -12,9 +11,7 @@ const { iconName, valueToCopy, ...rest } = Astro.props;
 ---
 
 <button class="contact-button" data-value={valueToCopy} {...rest}>
-    <div class="icon-global">
-        <Icon name={iconName} size={ICON_SIZE} />
-    </div>
+    <Icon name={iconName} bordered={true} />
     <span class="contact-value">{valueToCopy}</span>
 </button>
 
@@ -31,19 +28,12 @@ const { iconName, valueToCopy, ...rest } = Astro.props;
         font-family: inherit;
     }
 
-    /* Usunięto style dla .icon-wrapper i .icon-wrapper > :global(svg), ponieważ są teraz w global.css */
-    .contact-button:hover .icon-wrapper {
-        background-color: white;
-        color: black;
-    }
-
     .contact-value {
-        display: none; /* Ukryty domyślnie na dużych ekranach */
+        display: none;
         font-weight: bold;
-        font-size: 0.9rem; /* Zmniejszona czcionka */
+        font-size: 0.9rem;
     }
 
-    /* Na małych ekranach pokazujemy tekst */
     @media (max-width: 992px) {
         .contact-button {
             display: grid;
@@ -58,24 +48,13 @@ const { iconName, valueToCopy, ...rest } = Astro.props;
         }
     }
 
-    .contact-icon > :global(svg) {
-        width: 24px;
-        height: 24px;
-    }
-
-    .contact-button.press .icon-global {
+    .contact-button.press :global(.icon-wrapper) {
         animation: press 0.3s ease-out;
     }
 
     @keyframes press {
-        0% {
-            transform: scale(1);
-        }
-        50% {
-            transform: scale(0.9);
-        }
-        100% {
-            transform: scale(1);
-        }
+        0% { transform: scale(1); }
+        50% { transform: scale(0.9); }
+        100% { transform: scale(1); }
     }
 </style>

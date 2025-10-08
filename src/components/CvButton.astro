@@ -1,6 +1,5 @@
 ---
-import { Icon } from 'astro-icon/components';
-import { ICON_SIZE } from '../config';
+import Icon from './Icon.astro';
 
 export interface Props {
   text: string;
@@ -10,8 +9,6 @@ const { text, file } = Astro.props;
 const href = `${import.meta.env.BASE_URL}${file}`;
 ---
 <a href={href} target="_blank" rel="noopener noreferrer" class="cv-button">
-  <div>
-    <Icon name="mdi:file-document-outline" size={ICON_SIZE} />
-  </div>
+  <Icon name="mdi:file-document-outline" />
   <span>{text}</span>
 </a>
