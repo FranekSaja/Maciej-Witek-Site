@@ -1,7 +1,15 @@
 ---
-title: "Demo"
+title: "Dokumentacja"
 ---
+import ContactIcon from '../../components/ContactIcon.astro';
 
-# This is a demo page
+<h1 class="h1-global">Przykładowy Nagłówek</h1>
+<h2 class="h2-global">Przykładowy podtytuł</h2>
 
-This page is not visible in the menu.
+<div class="flex gap-4 my-8">
+    <ContactIcon iconName="mdi:phone" valueToCopy="123-456-789" />
+    <ContactIcon iconName="mdi:envelope" valueToCopy="example@email.com" />
+    <ContactIcon iconName="mdi:home" valueToCopy="Example Address" />
+</div>
+
+<a href="/" class="link-global">Link do strony About</a>

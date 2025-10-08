@@ -84,53 +84,58 @@ if (bio[0]) {
       const originalText = button.getAttribute('data-value');
       let copyTimeout: any = null;
 
-      // Pokaż tooltip na desktopie
+      const resetTooltip = () => {
+        clearTimeout(copyTimeout);
+        copyTimeout = null;
+        if (tooltip) {
+          tooltip.classList.remove('visible');
+        }
+        if (valueSpan) {
+          valueSpan.textContent = originalText;
+        }
+      };
+
       button.addEventListener('mouseenter', () => {
-        if (tooltip && window.innerWidth > 768 && !copyTimeout) {
+        if (tooltip && window.innerWidth > 992 && !copyTimeout) {
           tooltip.textContent = originalText;
           tooltip.classList.add('visible');
         }
       });
 
-      // Ukryj tooltip na desktopie
       button.addEventListener('mouseleave', () => {
-        if (tooltip && window.innerWidth > 768 && !copyTimeout) {
+        if (copyTimeout) {
+          resetTooltip();
+        } else if (tooltip && window.innerWidth > 992) {
           tooltip.classList.remove('visible');
         }
       });
 
-      // Logika kopiowania po kliknięciu
       button.addEventListener('click', () => {
         if (!originalText) return;
 
+        button.classList.add('press');
+        button.addEventListener('animationend', () => button.classList.remove('press'), { once: true });
+
         navigator.clipboard.writeText(originalText).then(() => {
-          // Wyczyść poprzedni timer, jeśli istnieje
           clearTimeout(copyTimeout);
 
-          // Ustaw tekst na "Copied!"
           if (valueSpan) valueSpan.textContent = 'Copied!';
-          if (tooltip && window.innerWidth > 768) {
+          if (tooltip && window.innerWidth > 992) {
             tooltip.textContent = 'Copied!';
             tooltip.classList.add('visible');
           }
 
-          // Ustaw timer do przywrócenia oryginalnego stanu
           copyTimeout = setTimeout(() => {
-            if (valueSpan) valueSpan.textContent = originalText;
-            
-            if (tooltip && window.innerWidth > 768) {
-              if (button.matches(':hover')) {
-                tooltip.textContent = originalText; // Jeśli kursor wciąż jest nad przyciskiem
-              } else {
-                tooltip.classList.remove('visible');
-              }
+            if (button.matches(':hover')) { // Jeśli kursor wciąż jest nad przyciskiem
+              if (tooltip) tooltip.textContent = originalText;
+            } else {
+              if (tooltip) tooltip.classList.remove('visible');
             }
-            copyTimeout = null; // Zresetuj stan timera
+            if (valueSpan) valueSpan.textContent = originalText;
+            copyTimeout = null;
           }, 1500);
 
-        }).catch(err => {
-          console.error('Failed to copy text: ', err);
-        });
+        }).catch(err => console.error('Failed to copy text: ', err));
       });
     });
   });
