@@ -42,6 +42,16 @@ Przykładowy link : [Link do strony About](/r3bq9m1z8t2w4ny)
 
 Markdown to prosty język formatowania tekstu, który pozwala w łatwy sposób tworzyć nagłówki, linki i inne elementy strony bez konieczności pisania CSS lub HTML. Poniżej przedstawiono podstawowe zasady użycia elementów w plikach `.mdx`:
 
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 1. **Tworzenie nagłówków**
 
    - **Nagłówek H1**  
@@ -58,7 +68,17 @@ Markdown to prosty język formatowania tekstu, który pozwala w łatwy sposób t
      ## To jest nagłówek H2
      ```
 
-2. **Tworzenie linków**
+     &nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+2. Tworzenie linków**
 
    Aby zamienić fragment tekstu w link, należy:
    - Umieścić tekst w nawiasach kwadratowych `[ ]`
@@ -69,4 +89,45 @@ Markdown to prosty język formatowania tekstu, który pozwala w łatwy sposób t
    [YouTube](https://www.youtube.com)
    ```
    efekt : [YouTube](https://www.youtube.com)
+
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+3. **Komponenty Astro**
+
+   Komponenty Astro to javascriptowe, wcześniej przygotowane elementy kodu, aplikowalne do pliku `.mdx`, widoczne na stronie jako interaktywne elementy. Wszystkie dostępne komponenty Astro są opisane w tej dokumentacji. **Przykład komponentu i jego zapisu (w dowolnym pliku `.mdx`):**
+
+   **Model zapisu:**
+
+   ```markdown
+     Import [nazwa funkcji tworzącej komponent] from '[ścieżka do pliku zawierającej kod Komponentu]'
+
+     <[nazwa funkcji tworzącej komponent] [parametery komponentyu (opcjonalne). zapis : [nazwaParametru={[wartość nadana parametrowi]}] Komponent może mieć nieograniczoną ilość parametrów, pod warunkiem, że zostały nadane w kodzie komponentu]>
+   ```
+**Przykład:**
+
+   ```markdown
+    import Icon from '../../components/Icon.astro';
+
+
+      <Icon name="mdi:github" bordered={true} />
+   ```  
+
+**Efekt na stronie:**
+
+&nbsp;
+
+<Icon name="mdi:github" bordered={true} />
+
+
+
+ 
    
