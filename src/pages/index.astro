@@ -66,11 +66,22 @@ if (bio[0]) {
         </aside>
       )}
     </section>
+
     <div class="flex w-full flex-col items-end">
       <div class="flex w-[31%] flex-col items-center">
          <ContactTooltip />
       </div>
      
+    </div>
+    <div class="mt-8 flex w-full justify-end">
+      <div class="flex w-[31%] flex-col items-start gap-2">
+        <a href="https://orcid.org/0000-0002-0462-1678" target="_blank" rel="noopener noreferrer" class="social-button w-full text-left">ORCID</a>
+        <a href="https://philpeople.org/profiles/maciej-witek" target="_blank" rel="noopener noreferrer" class="social-button w-full text-left">PhilPeople</a>
+        <a href="https://www.researchgate.net/profile/Maciej-Witek" target="_blank" rel="noopener noreferrer" class="social-button w-full text-left">ResearchGate</a>
+        <a href="https://scholar.google.pl/citations?user=ggqD6RAAAAAJ&hl=pl&oi=ao" target="_blank" rel="noopener noreferrer" class="social-button w-full text-left">Google Scholar</a>
+        <a href="https://www.webofscience.com/wos/author/record/1186753" target="_blank" rel="noopener noreferrer" class="social-button w-full text-left">Web of Science</a>
+        <a href="http://szczecin.academia.edu/MaciejWitek" target="_blank" rel="noopener noreferrer" class="social-button w-full text-left">Academia.edu</a>
+      </div>
     </div>
     
   </div>
@@ -243,4 +254,18 @@ if (bio[0]) {
   }
 
   /* Usunięto style dla h1 i p, ponieważ są teraz w global.css */
+  .social-button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    color: #333;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s;
+  }
+
+  .social-button:hover {
+    background-color: #e0e0e0;
+  }
 </style>
