@@ -7,13 +7,34 @@ html {
 }
 
 :root {
-  /* Dark Mode Palette */
+  --color-bg: #f0f2f5; /* Light gray background */
+  --color-fg: #000000; /* Black text */
+  --color-menu-bg: #e9ecef; /* Lighter gray for menu */
+  --color-menu-fg: #000000; /* Black text for menu */
+  --color-link-bg: #e0f2fe;
+  --color-link-fg: #0c4a6e;
+  --color-link-hover-bg: #0c4a6e;
+  --color-link-hover-fg: #e0f2fe;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --color-image-bg: white;
+  --color-menu-link-hover-bg: #d4d4d4;
+  --color-gradient-bg: #0c4a6e;
+  --container: 72rem;
+}
+
+html[data-theme='dark'] {
   --color-bg: #192A3E; /* Dark navy background */
   --color-fg: #FDFBF7; /* Soft off-white text */
   --color-menu-bg: #2a3c6b; /* Slightly darker teal */
   --color-menu-fg: #FFFFFF; /* White text for menu */
-  --color-link: #66a3ff; /* Lighter blue for dark mode links */
-  --container: 72rem;
+  --color-link-bg: #0c4a6e;
+  --color-link-fg: #e0f2fe;
+  --color-link-hover-bg: #e0f2fe;
+  --color-link-hover-fg: #0c4a6e;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --color-image-bg: var(--color-fg);
+  --color-menu-link-hover-bg: #0c4a6e;
+  --color-gradient-bg: white;
 }
 
 .prose img {
@@ -59,15 +80,15 @@ html {
   display: inline-block;
   font-weight: 600;
   text-decoration: none;
-  background-color: #0c4a6e; /* Błękitne tło */
-  color: #e0f2fe; /* Granatowy tekst */
+  background-color: var(--color-link-bg);
+  color: var(--color-link-fg);
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
   transition: background-color 0.2s, color 0.2s;
 }
 .prose p a:hover {
-  background-color: #e0f2fe; /* Granatowe tło */
-  color: #0c4a6e; /* Błękitny tekst */
+  background-color: var(--color-link-hover-bg);
+  color: var(--color-link-hover-fg);
 }
 
 .h1-global {
@@ -97,16 +118,16 @@ html {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: 1px solid white;
+  border: 1px solid var(--color-fg);
   background-color: transparent;
   transition: background-color 0.3s, color 0.3s;
-  color: white;
+  color: var(--color-fg);
   flex-shrink: 0;
 }
 
 .icon-global:hover {
-  background-color: white;
-  color: black;
+  background-color: var(--color-fg);
+  color: var(--color-bg);
 }
 
 /* Usunięto klasę .icon-container, ponieważ rozmiar jest teraz definiowany w komponentach za pomocą zmiennej globalnej */

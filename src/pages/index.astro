@@ -182,9 +182,9 @@ if (bio[0]) {
 
   .image-wrapper {
     padding: 24px;
-    background: linear-gradient(to bottom, transparent 30%, white);
+    background: linear-gradient(to bottom, transparent 30%, var(--color-gradient-bg));
     border-radius: 50%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px var(--shadow-color);
     margin-inline: auto;
   }
 
@@ -257,14 +257,14 @@ if (bio[0]) {
     display: inline-block;
     font-weight: 600;
     text-decoration: none;
-    background-color: #0c4a6e; /* Błękitne tło */
-    color: #e0f2fe; /* Granatowy tekst */
+    background-color: var(--color-link-bg);
+    color: var(--color-link-fg);
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
     transition: background-color 0.2s, color 0.2s;
   }
   .styled-link:hover {
-    background-color: #e0f2fe; /* Granatowe tło */
-    color: #0c4a6e; /* Błękitny tekst */
+    background-color: var(--color-link-hover-bg);
+    color: var(--color-link-hover-fg);
   }
 </style>

@@ -2,6 +2,7 @@
 // Pasek menu zintegrowany z kolekcją parts
 import { getCollection } from 'astro:content';
 import path from 'path-browserify';
+import ThemeSwitcher from './ThemeSwitcher.astro';
 
 export interface Props {
   currentPage: string;
@@ -52,15 +53,18 @@ const tabs = [
       ))}
     </ul>
   </nav>
+  <div class="absolute bottom-4 right-4">
+    <ThemeSwitcher />
+  </div>
 </div>
 
 <style>
   :root {
     --menu-width-lg: clamp(220px, 20vw, 400px);
     --menu-width-sm: 250px; /* Zwężone menu mobilne */
-    --menu-border: #334155;      /* slate-700 */
-    --menu-link-hover-bg: #334155;  /* slate-700 */
-    --menu-toggle-bg: rgba(30, 41, 59, 0.8);
+    --menu-border: var(--color-menu-bg);
+    --menu-link-hover-bg: var(--color-menu-bg);
+    --menu-toggle-bg: var(--color-menu-bg);
   }
 
   /* --- Style dla dużych ekranów (Desktop) --- */
@@ -112,7 +116,7 @@ const tabs = [
   }
 
   .menu-link:hover {
-    background-color: #e0f2fe; /* light-blue */
+    background-color: var(--color-menu-link-hover-bg);
   }
 
   .menu-link.is-active {
@@ -168,9 +172,6 @@ const tabs = [
     }
   }
 
-  .menu-link:hover {
-    background-color: #0c4a6e; /* dark-blue */
-  }
 
   .menu-link.is-active {
     background-color: var(--color-bg);
