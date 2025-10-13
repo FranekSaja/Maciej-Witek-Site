@@ -22,6 +22,10 @@ const bio = defineCollection({
         icon: z.string(),
       }),
     }).optional(),
+    socialLinks: z.array(z.object({
+      text: z.string(),
+      href: z.string().url(),
+    })).optional(),
   })
 })
 
