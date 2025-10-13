@@ -73,14 +73,14 @@ if (bio[0]) {
       </div>
      
     </div>
-    <div class="mt-8 flex w-full justify-end">
-      <div class="flex w-[31%] flex-col items-start gap-2">
-        <a href="https://orcid.org/0000-0002-0462-1678" target="_blank" rel="noopener noreferrer" class="social-button w-full text-left">ORCID</a>
-        <a href="https://philpeople.org/profiles/maciej-witek" target="_blank" rel="noopener noreferrer" class="social-button w-full text-left">PhilPeople</a>
-        <a href="https://www.researchgate.net/profile/Maciej-Witek" target="_blank" rel="noopener noreferrer" class="social-button w-full text-left">ResearchGate</a>
-        <a href="https://scholar.google.pl/citations?user=ggqD6RAAAAAJ&hl=pl&oi=ao" target="_blank" rel="noopener noreferrer" class="social-button w-full text-left">Google Scholar</a>
-        <a href="https://www.webofscience.com/wos/author/record/1186753" target="_blank" rel="noopener noreferrer" class="social-button w-full text-left">Web of Science</a>
-        <a href="http://szczecin.academia.edu/MaciejWitek" target="_blank" rel="noopener noreferrer" class="social-button w-full text-left">Academia.edu</a>
+    <div class="mt-1 lg:mt-2 flex w-full justify-center lg:justify-start">
+      <div class="flex w-full lg:w-[31%] flex-wrap items-start justify-center lg:justify-start gap-2">
+        <a href="https://orcid.org/0000-0002-0462-1678" target="_blank" rel="noopener noreferrer" class="styled-link">ORCID</a>
+        <a href="https://philpeople.org/profiles/maciej-witek" target="_blank" rel="noopener noreferrer" class="styled-link">PhilPeople</a>
+        <a href="https://www.researchgate.net/profile/Maciej-Witek" target="_blank" rel="noopener noreferrer" class="styled-link">ResearchGate</a>
+        <a href="https://scholar.google.pl/citations?user=ggqD6RAAAAAJ&hl=pl&oi=ao" target="_blank" rel="noopener noreferrer" class="styled-link">Google Scholar</a>
+        <a href="https://www.webofscience.com/wos/author/record/1186753" target="_blank" rel="noopener noreferrer" class="styled-link">Web of Science</a>
+        <a href="http://szczecin.academia.edu/MaciejWitek" target="_blank" rel="noopener noreferrer" class="styled-link">Academia.edu</a>
       </div>
     </div>
     
@@ -236,6 +236,7 @@ if (bio[0]) {
     .bio-text .contact-icons-container {
       display: flex; /* Musimy zdefiniować flex, aby działało */
       margin-top: 2rem;
+      margin-bottom: 2rem;
       flex-direction: column;
       align-items: flex-start;
       gap: 1.5rem;
@@ -254,18 +255,18 @@ if (bio[0]) {
   }
 
   /* Usunięto style dla h1 i p, ponieważ są teraz w global.css */
-  .social-button {
+  .styled-link {
     display: inline-block;
-    padding: 0.5rem 1rem;
-    border: 1px solid #ccc;
-    border-radius: 0.25rem;
+    font-weight: 600;
     text-decoration: none;
-    color: #333;
-    background-color: #f0f0f0;
-    transition: background-color 0.3s;
+    background-color: #0c4a6e; /* Błękitne tło */
+    color: #e0f2fe; /* Granatowy tekst */
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
   }
-
-  .social-button:hover {
-    background-color: #e0e0e0;
+  .styled-link:hover {
+    background-color: #e0f2fe; /* Granatowe tło */
+    color: #0c4a6e; /* Błękitny tekst */
   }
 </style>
