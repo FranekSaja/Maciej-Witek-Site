@@ -34,12 +34,14 @@ import MenuBar from "../components/MenuBar.astro";
       .main-content {
         /* Usunięto max-width i margin, aby kontener wypełniał dostępną przestrzeń */
         padding: 2.5rem;
+        padding-top: 0.5rem;
         transition: margin-right 0.3s ease-in-out; /* Płynne przejście */
       }
 
-      @media (min-width: 1400px) { /* Zsynchronizowano breakpoint z MenuBar */
+      @media (min-width: 1600px) { /* Zsynchronizowano breakpoint z MenuBar */
         .main-content {
           margin-right: calc(var(--menu-width-lg) + 2rem);
+          padding-top: 2.5rem;
         }
       }
     </style>
