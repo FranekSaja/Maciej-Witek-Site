@@ -3,7 +3,13 @@ id: "publications"
 title: "PUBLICATIONS"
 ---
 import PublicationList from '../../components/PublicationList.astro';
+import SearchBar from '../../components/SearchBar.astro';
 
+<div class="title-with-search">
 # Publications
+<div class="search-wrapper">
+<SearchBar />
+</div>
+</div>
 
 <PublicationList />

@@ -24,6 +24,17 @@ const baseUrl = import.meta.env.BASE_URL;
 </div>
 
 <style>
+  .publication-item {
+    transition: opacity 0.3s ease-out, max-height 0.3s ease-out;
+    overflow: hidden;
+  }
+  .publication-item.hidden {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border: 0;
+  }
   .publication-link > div {
     display: flex;
     flex-direction: column;
@@ -38,3 +49,38 @@ const baseUrl = import.meta.env.BASE_URL;
     font-weight: 600;
   }
 </style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchBar = document.getElementById('search-bar');
+    const publicationItems = document.querySelectorAll('.publication-item');
+
+    // Ustawienie początkowej max-height dla animacji
+    publicationItems.forEach(item => {
+      item.style.maxHeight = `${item.scrollHeight}px`;
+    });
+
+    searchBar.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+
+      publicationItems.forEach(item => {
+        const title = item.querySelector('.title')?.textContent.toLowerCase() || '';
+        const author = item.querySelector('.author')?.textContent.toLowerCase() || '';
+
+        const isVisible = title.includes(searchTerm) || author.includes(searchTerm);
+
+        if (isVisible) {
+          item.classList.remove('hidden');
+          item.style.maxHeight = `${item.scrollHeight}px`;
+        } else {
+          // Ustawienie max-height przed dodaniem klasy hidden
+          item.style.maxHeight = `${item.scrollHeight}px`;
+          setTimeout(() => {
+            item.classList.add('hidden');
+            item.style.maxHeight = '0px';
+          }, 10); // Małe opóźnienie
+        }
+      });
+    });
+  });
+</script>

@@ -176,3 +176,20 @@ html[data-theme='dark'] {
   transform: scale(1.008);
   transition-duration: 0.3s;
 }
+
+.title-with-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  margin: 0 2rem 1rem 2rem;
+}
+
+.title-with-search h1 {
+  margin-bottom: 0; /* Usunięcie domyślnego marginesu nagłówka */
+}
+
+.search-wrapper {
+  flex-shrink: 0;
+  width: 40%; /* Szerokość paska wyszukiwania */
+}
