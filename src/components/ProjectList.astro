@@ -22,10 +22,10 @@ const pastProjects = projects.filter(p => p.data.status === 'past');
           <Icon name="mdi:plus" size={24} />
         </button>
       </div>
-      <div class="project-summary" id={`summary-current-${index}`}>
-        <p>{project.data.summary}</p>
-      </div>
     </li>
+    <div class="project-summary" id={`summary-current-${index}`}>
+      <p>{project.data.summary}</p>
+    </div>
   ))}
 </ul>
 
@@ -41,10 +41,10 @@ const pastProjects = projects.filter(p => p.data.status === 'past');
           <Icon name="mdi:plus" size={24} />
         </button>
       </div>
-      <div class="project-summary" id={`summary-past-${index}`}>
-        <p>{project.data.summary}</p>
-      </div>
     </li>
+    <div class="project-summary" id={`summary-past-${index}`}>
+      <p>{project.data.summary}</p>
+    </div>
   ))}
 </ul>
 
@@ -71,6 +71,12 @@ const pastProjects = projects.filter(p => p.data.status === 'past');
 </script>
 
 <style>
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem; /* Wyraźny odstęp */
+  }
   .project-list {
     list-style: none;
     padding: 0;
@@ -79,20 +85,24 @@ const pastProjects = projects.filter(p => p.data.status === 'past');
     gap: 1rem;
   }
   .project-item {
-    border-top: 1px solid var(--color-fg);
-    border-bottom: 1px solid var(--color-fg);
+    /* border-top: 1px solid var(--color-fg); */
+    /* border-bottom: 1px solid var(--color-fg); */
   }
   .project-link, .toggle-summary {
     padding: 1rem;
     transition: background-color 0.2s;
   }
   .project-link:hover, .toggle-summary:hover {
-    background-color: var(--color-menu-bg);
+    background-color: var(--color-fg);
+    color: var(--color-bg);
   }
   .project-link {
     text-decoration: none;
     color: var(--color-fg);
     display: block;
+    flex-grow: 1;
+    border-top: 1px solid var(--color-fg);
+    border-bottom: 1px solid var(--color-fg);
   }
   .toggle-summary {
     background: none;
@@ -100,6 +110,8 @@ const pastProjects = projects.filter(p => p.data.status === 'past');
     cursor: pointer;
     color: var(--color-fg);
     transition: transform 0.2s;
+    border-top: 1px solid var(--color-fg);
+    border-bottom: 1px solid var(--color-fg);
   }
   .toggle-summary:hover {
     transform: scale(1.2);
