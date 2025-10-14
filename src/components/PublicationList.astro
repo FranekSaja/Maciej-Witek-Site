@@ -12,10 +12,29 @@ const baseUrl = import.meta.env.BASE_URL;
     {publications.map((publication) => (
       <li class="publication-item">
         <a href={path.join(baseUrl, 'publications', publication.slug)} class="publication-link">
-          <span>{publication.data.title}</span>
+          <div>
+            <span class="author">{publication.data.author}</span>
+            <span class="title">{publication.data.title}</span>
+          </div>
           <Icon name="mdi:arrow-right" size={24} />
         </a>
       </li>
     ))}
   </ul>
 </div>
+
+<style>
+  .publication-link > div {
+    display: flex;
+    flex-direction: column;
+  }
+  .author {
+    font-size: 1rem; /* Zwiększona czcionka */
+    font-weight: 400;
+    margin-bottom: 0.25rem;
+  }
+  .title {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+</style>

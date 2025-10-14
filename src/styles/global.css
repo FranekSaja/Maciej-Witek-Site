@@ -135,10 +135,14 @@ html[data-theme='dark'] {
 /* Usunięto klasę .icon-container, ponieważ rozmiar jest teraz definiowany w komponentach za pomocą zmiennej globalnej */
 
 /* --- Styles for Project/Publication Lists --- */
+.publications-section-container {
+  margin: 0 2rem;
+}
+
 .list-container {
   background-color: var(--color-container-bg);
   padding: 0;
-  margin: 0 2rem;
+  margin: 0 2rem; /* Przywrócony margines */
   border-radius: 8px;
   overflow: hidden;
 }
