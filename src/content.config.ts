@@ -55,4 +55,14 @@ const projects = defineCollection({
   })
 });
 
-export const collections = { bio, parts, hidden, projects }
+const publications = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    date: z.string().optional(),
+    summary: z.string().optional(),
+  })
+});
+
+export const collections = { bio, parts, hidden, projects, publications }

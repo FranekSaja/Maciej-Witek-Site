@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import path from 'path-browserify';
+import { Icon } from 'astro-icon/components';
+
+const publications = await getCollection('publications');
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<div class="list-container">
+  <ul class="publication-list">
+    {publications.map((publication) => (
+      <li class="publication-item">
+        <a href={path.join(baseUrl, 'publications', publication.slug)} class="publication-link">
+          <span>{publication.data.title}</span>
+          <Icon name="mdi:arrow-right" size={24} />
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>

@@ -43,39 +43,3 @@ const pastProjects = projects.filter(p => p.data.status === 'past');
     ))}
   </ul>
 </div>
-
-<style>
-  .list-container {
-    background-color: var(--color-container-bg);
-    padding: 0; /* Usunięty padding, bo linki go mają */
-    margin: 0 2rem; /* Marginesy tylko po bokach */
-    border-radius: 8px; /* Zaokrąglone rogi */
-    overflow: hidden; /* Aby border-radius działał na dzieciach */
-  }
-  .project-list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-  .project-item {
-    border-bottom: 1px solid var(--color-menu-link-hover-bg);
-  }
-  .project-link {
-    padding: 1rem 2rem; /* Zmniejszony padding */
-    transition: background-color 0.2s, color 0.2s, transform 0.2s ease-out;
-    text-decoration: none;
-    color: var(--color-fg);
-    display: flex; /* Ustawienie flexbox */
-    justify-content: space-between; /* Rozłożenie elementów */
-    align-items: center; /* Wyrównanie w pionie */
-    font-size: 1.125rem; /* Zmniejszona czcionka */
-    font-weight: 600; /* Pogrubiona czcionka */
-  }
-  .project-link:hover {
-    background-color: var(--color-menu-link-hover-bg);
-    transform: scale(1.008); /* Zmniejszona skala o 2.5x */
-    transition-duration: 0.3s; /* Wolniejsze przejście */
-  }
-</style>
