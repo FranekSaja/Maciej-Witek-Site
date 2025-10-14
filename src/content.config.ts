@@ -44,4 +44,15 @@ const hidden = defineCollection({
   })
 })
 
-export const collections = { bio, parts, hidden }
+const projects = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    date: z.string().optional(),
+    summary: z.string().optional(),
+    status: z.enum(['current', 'past']).optional(),
+  })
+});
+
+export const collections = { bio, parts, hidden, projects }

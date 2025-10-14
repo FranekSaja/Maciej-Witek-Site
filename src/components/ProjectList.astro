@@ -1,0 +1,118 @@
+---
+import { getCollection } from 'astro:content';
+import path from 'path-browserify';
+import { Icon } from 'astro-icon/components';
+
+const projects = await getCollection('projects');
+const baseUrl = import.meta.env.BASE_URL;
+
+const currentProjects = projects.filter(p => p.data.status === 'current');
+const pastProjects = projects.filter(p => p.data.status === 'past');
+---
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Current Projects</h2>
+<ul class="project-list">
+  {currentProjects.map((project, index) => (
+    <li class="project-item">
+      <div class="project-header">
+        <a href={path.join(baseUrl, 'projects', project.slug)} class="project-link">
+          {project.data.title}
+        </a>
+        <button class="toggle-summary" data-index={`current-${index}`}>
+          <Icon name="mdi:plus" size={24} />
+        </button>
+      </div>
+      <div class="project-summary" id={`summary-current-${index}`}>
+        <p>{project.data.summary}</p>
+      </div>
+    </li>
+  ))}
+</ul>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Past Projects</h2>
+<ul class="project-list">
+  {pastProjects.map((project, index) => (
+    <li class="project-item">
+      <div class="project-header">
+        <a href={path.join(baseUrl, 'projects', project.slug)} class="project-link">
+          {project.data.title}
+        </a>
+        <button class="toggle-summary" data-index={`past-${index}`}>
+          <Icon name="mdi:plus" size={24} />
+        </button>
+      </div>
+      <div class="project-summary" id={`summary-past-${index}`}>
+        <p>{project.data.summary}</p>
+      </div>
+    </li>
+  ))}
+</ul>
+
+<script>
+  document.querySelectorAll('.toggle-summary').forEach(button => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault(); // Zapobiega nawigacji
+      event.stopPropagation(); // Zapobiega propagacji kliknięcia do linku
+      const index = button.getAttribute('data-index');
+      const summary = document.getElementById(`summary-${index}`);
+      if (summary) {
+        summary.classList.toggle('open');
+        const icon = button.querySelector('svg');
+        if (icon) {
+          if (summary.classList.contains('open')) {
+            icon.style.transform = 'rotate(45deg)';
+          } else {
+            icon.style.transform = 'rotate(0deg)';
+          }
+        }
+      }
+    });
+  });
+</script>
+
+<style>
+  .project-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .project-item {
+    border-top: 1px solid var(--color-fg);
+    border-bottom: 1px solid var(--color-fg);
+  }
+  .project-link, .toggle-summary {
+    padding: 1rem;
+    transition: background-color 0.2s;
+  }
+  .project-link:hover, .toggle-summary:hover {
+    background-color: var(--color-menu-bg);
+  }
+  .project-link {
+    text-decoration: none;
+    color: var(--color-fg);
+    display: block;
+  }
+  .toggle-summary {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-fg);
+    transition: transform 0.2s;
+  }
+  .toggle-summary:hover {
+    transform: scale(1.2);
+  }
+  .project-summary {
+    margin-top: 1rem;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+  }
+  .project-summary.open {
+    max-height: 100px; /* Adjust as needed */
+    opacity: 1;
+  }
+</style>
