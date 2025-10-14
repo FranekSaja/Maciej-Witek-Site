@@ -20,6 +20,7 @@ html {
   --color-menu-link-hover-bg: #d4d4d4;
   --color-gradient-bg: #0c4a6e;
   --container: 72rem;
+  --color-container-bg: #e9ecef; /* Light mode container background */
 }
 
 html[data-theme='dark'] {
@@ -35,6 +36,7 @@ html[data-theme='dark'] {
   --color-image-bg: var(--color-fg);
   --color-menu-link-hover-bg: #0c4a6e;
   --color-gradient-bg: white;
+  --color-container-bg: #20344f; /* Dark mode container background */
 }
 
 .prose img {

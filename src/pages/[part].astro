@@ -21,9 +21,11 @@ import H2 from '@components/mdx/H2.astro';
 const { Content } = await entry.render();
 ---
 <MainLayout title={`Maciej Witek — ${entry.data.title}`} description={`Podstrona ${entry.data.title}`}>
-  <section class="space-y-6">
-    <article class="prose dark:prose-invert max-w-none">
-      <Content components={{ h1: H1, h2: H2 }} />
-    </article>
-  </section>
+  <div style="margin-top: 4rem;">
+    <section class="space-y-6">
+      <article class="prose dark:prose-invert max-w-none">
+        <Content components={{ h1: H1, h2: H2 }} />
+      </article>
+    </section>
+  </div>
 </MainLayout>
