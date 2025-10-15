@@ -38,6 +38,13 @@ import MenuBar from "../components/MenuBar.astro";
         transition: margin-right 0.3s ease-in-out; /* Płynne przejście */
       }
 
+      @media (max-width: 768px) {
+        .main-content {
+          padding: 1rem;
+          padding-top: 0.5rem;
+        }
+      }
+
       @media (min-width: 1600px) { /* Zsynchronizowano breakpoint z MenuBar */
         .main-content {
           margin-right: calc(var(--menu-width-lg) + 2rem);

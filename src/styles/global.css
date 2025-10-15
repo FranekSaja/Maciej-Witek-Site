@@ -135,16 +135,18 @@ html[data-theme='dark'] {
 /* Usunięto klasę .icon-container, ponieważ rozmiar jest teraz definiowany w komponentach za pomocą zmiennej globalnej */
 
 /* --- Styles for Project/Publication Lists --- */
-.publications-section-container {
-  margin: 0 2rem;
-}
-
 .list-container {
   background-color: var(--color-container-bg);
   padding: 0;
-  margin: 0 2rem; /* Przywrócony margines */
+  margin: 0; /* Usunięty margines dla widoku mobilnego */
   border-radius: 8px;
   overflow: hidden;
+}
+
+@media (min-width: 769px) {
+  .list-container {
+    margin: 0 2rem; /* Przywrócony margines dla widoku desktopowego */
+  }
 }
 
 .project-list, .publication-list {
@@ -159,37 +161,86 @@ html[data-theme='dark'] {
   border-bottom: 1px solid var(--color-menu-link-hover-bg);
 }
 
+/* --- BASE STYLES (MOBILE-FIRST) --- */
+
 .project-link, .publication-link {
-  padding: 1rem 2rem;
+  padding: 0.75rem 1rem;
   transition: background-color 0.2s, color 0.2s, transform 0.2s ease-out;
   text-decoration: none;
   color: var(--color-fg);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 600;
+}
+
+.publication-link .author {
+  font-size: 0.875rem;
+}
+.publication-link .title {
+  font-size: 1rem;
 }
 
 .project-link:hover, .publication-link:hover {
   background-color: var(--color-menu-link-hover-bg);
-  transform: scale(1.008);
-  transition-duration: 0.3s;
 }
 
 .title-with-search {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-  margin: 0 2rem 1rem 2rem;
-}
-
-.title-with-search h1 {
-  margin-bottom: 0; /* Usunięcie domyślnego marginesu nagłówka */
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+  margin: 0 0 1rem 0;
 }
 
 .search-wrapper {
+  width: 100%;
   flex-shrink: 0;
-  width: 40%; /* Szerokość paska wyszukiwania */
+}
+
+.title-with-search h1 {
+  margin-bottom: 0;
+}
+
+
+/* --- DESKTOP OVERRIDES --- */
+@media (min-width: 769px) {
+  .list-container {
+    margin: 0 2rem;
+  }
+
+  .project-link, .publication-link {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+
+  .publication-link .author {
+    font-size: 1rem;
+  }
+  .publication-link .title {
+    font-size: 1.125rem;
+  }
+
+  .project-link:hover, .publication-link:hover {
+    transform: scale(1.008);
+    transition-duration: 0.3s;
+  }
+
+  .title-with-search {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 2rem; /* Dodajemy padding, aby wciąć zawartość */
+    margin-bottom: 1rem;
+  }
+
+  .title-with-search h1 {
+    margin-left: -2rem; /* Wyciągamy tytuł z powrotem do krawędzi */
+  }
+
+  .search-wrapper {
+    width: 40%;
+  }
 }
