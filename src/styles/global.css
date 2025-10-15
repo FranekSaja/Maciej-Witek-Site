@@ -7,20 +7,20 @@ html {
 }
 
 :root {
-  --color-bg: #f0f2f5; /* Light gray background */
-  --color-fg: #000000; /* Black text */
-  --color-menu-bg: #e9ecef; /* Lighter gray for menu */
-  --color-menu-fg: #000000; /* Black text for menu */
-  --color-link-bg: #e0f2fe;
-  --color-link-fg: #0c4a6e;
-  --color-link-hover-bg: #0c4a6e;
-  --color-link-hover-fg: #e0f2fe;
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --color-image-bg: white;
-  --color-menu-link-hover-bg: #d4d4d4;
-  --color-gradient-bg: #0c4a6e;
+  --color-bg: #fdf6e3; /* Kość słoniowa / antyczna biel */
+  --color-fg: #5a462a; /* Ciemny, nasycony brąz dla tekstu */
+  --color-menu-bg: #ffffff; /* Czysta biel dla menu */
+  --color-menu-fg: #7a664d; /* Brązowo-szary tekst w menu */
+  --color-link-bg: #f5e5c7; /* Jasne, piaskowe złoto dla tła linków */
+  --color-link-fg: #9c7c4b; /* Ciemne, stare złoto dla tekstu linków */
+  --color-link-hover-bg: #9c7c4b;
+  --color-link-hover-fg: #ffffff;
+  --shadow-color: rgba(90, 70, 42, 0.1); /* Cień oparty na brązie */
+  --color-image-bg: #ffffff;
+  --color-menu-link-hover-bg: #f9f2e8; /* Delikatny, kremowy hover */
+  --color-gradient-bg: #9c7c4b;
   --container: 72rem;
-  --color-container-bg: #e9ecef; /* Light mode container background */
+  --color-container-bg: #faf3e9; /* Bardzo jasny, ciepły beż */
 }
 
 html[data-theme='dark'] {
