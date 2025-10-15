@@ -7,20 +7,20 @@ html {
 }
 
 :root {
-  --color-bg: #fdf6e3; /* Kość słoniowa / antyczna biel */
-  --color-fg: #5a462a; /* Ciemny, nasycony brąz dla tekstu */
-  --color-menu-bg: #ffffff; /* Czysta biel dla menu */
-  --color-menu-fg: #7a664d; /* Brązowo-szary tekst w menu */
-  --color-link-bg: #f5e5c7; /* Jasne, piaskowe złoto dla tła linków */
-  --color-link-fg: #9c7c4b; /* Ciemne, stare złoto dla tekstu linków */
-  --color-link-hover-bg: #9c7c4b;
+  --color-bg: #f5f3f0; /* Lekko szary, ciepły beż tła */
+  --color-fg: #6b4f2c; /* Ciemne, miodowe złoto */
+  --color-menu-bg: #e9e4db; /* Wyraźnie ciemniejsze, beżowe menu */
+  --color-menu-fg: #8c785c; /* Zgaszone złoto dla tekstu w menu */
+  --color-link-bg: #f5e5c7; /* Jasne, piaskowe złoto */
+  --color-link-fg: #b58a3f; /* Nasycone, antyczne złoto */
+  --color-link-hover-bg: #b58a3f;
   --color-link-hover-fg: #ffffff;
-  --shadow-color: rgba(90, 70, 42, 0.1); /* Cień oparty na brązie */
+  --shadow-color: rgba(107, 79, 44, 0.15); /* Cień oparty na nowym kolorze tekstu */
   --color-image-bg: #ffffff;
-  --color-menu-link-hover-bg: #f9f2e8; /* Delikatny, kremowy hover */
-  --color-gradient-bg: #9c7c4b;
+  --color-menu-link-hover-bg: #dcd4c9; /* Zachowany ciemniejszy hover */
+  --color-gradient-bg: #b58a3f;
   --container: 72rem;
-  --color-container-bg: #faf3e9; /* Bardzo jasny, ciepły beż */
+  --color-container-bg: #fcfaf7; /* Zachowany bardzo jasny kontener */
 }
 
 html[data-theme='dark'] {
