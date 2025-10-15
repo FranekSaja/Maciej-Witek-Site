@@ -2,14 +2,23 @@
 import { getCollection } from 'astro:content';
 import path from 'path-browserify';
 import { Icon } from 'astro-icon/components';
+import PLIcon from './icons/PLIcon.astro';
+import ENIcon from './icons/ENIcon.astro';
 
 const publications = await getCollection('publications');
 const baseUrl = import.meta.env.BASE_URL;
+
+const polishPublications = publications.filter(p => p.data.lang === 'pl');
+const englishPublications = publications.filter(p => p.data.lang === 'en');
 ---
 
+<h2 class="text-2xl font-bold mt-8 mb-4 flex items-center gap-2">
+  <PLIcon />
+  <span>Publikacje polskie</span>
+</h2>
 <div class="list-container">
   <ul class="publication-list">
-    {publications.map((publication) => (
+    {polishPublications.map((publication) => (
       <li class="publication-item">
         <a href={path.join(baseUrl, 'publications', publication.slug)} class="publication-link">
           <div>
@@ -21,8 +30,29 @@ const baseUrl = import.meta.env.BASE_URL;
       </li>
     ))}
   </ul>
-  <p id="no-results-message" class="no-results-message" style="display: none;">It's nothing here...</p>
 </div>
+
+<h2 class="text-2xl font-bold mt-8 mb-4 flex items-center gap-2">
+  <ENIcon />
+  <span>Publikacje angielskie</span>
+</h2>
+<div class="list-container">
+  <ul class="publication-list">
+    {englishPublications.map((publication) => (
+      <li class="publication-item">
+        <a href={path.join(baseUrl, 'publications', publication.slug)} class="publication-link">
+          <div>
+            <span class="author">{publication.data.author}</span>
+            <span class="title">{publication.data.title}</span>
+          </div>
+          <Icon name="mdi:arrow-right" size={24} />
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<p id="no-results-message" class="no-results-message" style="display: none;">It's nothing here...</p>
 
 <style>
   .no-results-message {

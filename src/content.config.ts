@@ -63,6 +63,7 @@ const publications = defineCollection({
     description: z.string().optional(),
     date: z.string().optional(),
     summary: z.string().optional(),
+    lang: z.enum(['pl', 'en']),
   })
 });
 
