@@ -52,7 +52,7 @@ const tabs = [
       ))}
     </ul>
   </nav>
-  <div class="absolute bottom-4 right-4">
+  <div class="themeswitcher-container">
     <ThemeSwitcher />
   </div>
 </div>
@@ -176,6 +176,24 @@ const tabs = [
     background-color: var(--color-bg);
   }
 
+  .themeswitcher-container {
+    position: fixed;
+    bottom: 2rem;
+    right: calc((var(--menu-width-lg) - 80px) / 2); /* Centrowanie w menu desktopowym */
+    transition: transform 0.3s ease-in-out;
+  }
+
+  @media (max-width: 1600px) {
+    .themeswitcher-container {
+      left: calc((var(--menu-width-sm) - 80px) / 2); /* Centrowanie w menu mobilnym */
+      right: auto;
+      transform: translateX(-250px); /* Ukrycie razem z menu */
+    }
+
+    .menu-container.is-open .themeswitcher-container {
+      transform: translateX(0); /* Pokazanie razem z menu */
+    }
+  }
 </style>
 
 <script>
