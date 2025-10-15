@@ -1,20 +1,119 @@
 ---
 import { Icon } from 'astro-icon/components';
 ---
-<button id="theme-switcher" class="w-12 h-12 rounded-full flex items-center justify-center focus:outline-none transition-transform duration-200 hover:scale-110" style="cursor: pointer;">
-  <div id="sun-icon">
-    <Icon name="mdi:lightbulb-on-outline" size={40} />
+<label id="theme-switcher" class="theme-switcher" title="Zmień motyw">
+  <input type="checkbox" class="theme-switcher__input">
+  <div class="theme-switcher__track">
+    <div class="theme-switcher__handle">
+      <Icon name="mdi:white-balance-sunny" class="theme-switcher__icon theme-switcher__icon--sun" size={24} />
+      <Icon name="mdi:weather-night" class="theme-switcher__icon theme-switcher__icon--moon" size={24} />
+    </div>
   </div>
-  <div id="moon-icon" class="hidden">
-    <Icon name="mdi:weather-night" size={40} />
-  </div>
-</button>
+</label>
+
+<style>
+  .theme-switcher {
+    --switch-width: 80px;
+    --switch-height: 40px;
+    --handle-size: 32px;
+    --border-width: 2px;
+    /* Obliczenie przestrzeni na ruch kulki */
+    --travel-distance: calc(var(--switch-width) - var(--handle-size) - (2 * var(--border-width)));
+
+    display: block;
+    position: relative;
+    width: var(--switch-width);
+    height: var(--switch-height);
+    cursor: pointer;
+    opacity: 0.8;
+  }
+
+  .theme-switcher__input {
+    display: none; /* Ukrycie checkboxa */
+  }
+
+  .theme-switcher__track {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-bg);
+    border: var(--border-width) solid var(--color-fg);
+    border-radius: var(--switch-height);
+    transition: background-color 0.3s ease;
+  }
+
+  .theme-switcher__handle {
+    position: absolute;
+    /* Idealne centrowanie w pionie */
+    top: 50%;
+    /* Pozycja startowa */
+    left: var(--border-width);
+    transform: translateY(-50%);
+
+    height: var(--handle-size);
+    width: var(--handle-size);
+    background-color: var(--color-fg);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    
+    /* Centrowanie ikon wewnątrz kulki */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Stan zaznaczony (dark mode) */
+  .theme-switcher__input:checked + .theme-switcher__track {
+    background-color: var(--color-menu-bg);
+  }
+
+  .theme-switcher__input:checked + .theme-switcher__track .theme-switcher__handle {
+    /* Przesunięcie o obliczoną odległość */
+    transform: translateX(var(--travel-distance)) translateY(-50%);
+  }
+
+  .theme-switcher__icon {
+    position: absolute;
+    color: var(--color-bg);
+    transition: opacity 0.2s ease, transform 0.3s ease;
+  }
+
+  /* Domyślnie (light) - księżyc widoczny */
+  .theme-switcher__icon--sun {
+    opacity: 0;
+    transform: rotate(-90deg);
+  }
+  .theme-switcher__icon--moon {
+    opacity: 1;
+    transform: rotate(0);
+  }
+
+  /* Zaznaczone (dark) - słońce widoczne */
+  .theme-switcher__input:checked + .theme-switcher__track .theme-switcher__icon--sun {
+    opacity: 1;
+    transform: rotate(0);
+  }
+  .theme-switcher__input:checked + .theme-switcher__track .theme-switcher__icon--moon {
+    opacity: 0;
+    transform: rotate(90deg);
+  }
+</style>
 
 <script>
+  // Skrypt pozostaje bez zmian, jest poprawny
   const switcher = document.getElementById('theme-switcher');
-  const sunIcon = document.getElementById('sun-icon');
-  const moonIcon = document.getElementById('moon-icon');
+  const checkbox = switcher?.querySelector('.theme-switcher__input') as HTMLInputElement | null;
   const html = document.documentElement;
+
+  const applyTheme = (theme: 'light' | 'dark') => {
+    if (theme === 'dark') {
+      html.setAttribute('data-theme', 'dark');
+      if (checkbox) checkbox.checked = true;
+    } else {
+      html.removeAttribute('data-theme');
+      if (checkbox) checkbox.checked = false;
+    }
+  };
 
   const theme = (() => {
     if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
@@ -26,32 +125,14 @@ import { Icon } from 'astro-icon/components';
     return 'light';
   })();
 
-  if (sunIcon && moonIcon) {
-    if (theme === 'light') {
-      html.removeAttribute('data-theme');
-      sunIcon.classList.add('hidden');
-      moonIcon.classList.remove('hidden');
-    } else {
-      html.setAttribute('data-theme', 'dark');
-      sunIcon.classList.remove('hidden');
-      moonIcon.classList.add('hidden');
-    }
+  if (theme === 'light' || theme === 'dark') {
+    applyTheme(theme);
   }
 
-  if (switcher && sunIcon && moonIcon) {
-    switcher.addEventListener('click', () => {
-      const currentTheme = html.getAttribute('data-theme');
-      if (currentTheme === 'dark') {
-        html.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'light');
-        sunIcon.classList.add('hidden');
-        moonIcon.classList.remove('hidden');
-      } else {
-        html.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-        sunIcon.classList.remove('hidden');
-        moonIcon.classList.add('hidden');
-      }
-    });
-  }
+  checkbox?.addEventListener('change', () => {
+    if (!checkbox) return;
+    const newTheme = checkbox.checked ? 'dark' : 'light';
+    localStorage.setItem('theme', newTheme);
+    applyTheme(newTheme);
+  });
 </script>

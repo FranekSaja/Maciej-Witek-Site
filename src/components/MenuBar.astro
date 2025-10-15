@@ -7,7 +7,6 @@ import ThemeSwitcher from './ThemeSwitcher.astro';
 export interface Props {
   currentPage: string;
 }
-
 const { currentPage } = Astro.props;
 
 const parts = await getCollection('parts');
