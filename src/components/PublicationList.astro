@@ -21,9 +21,16 @@ const baseUrl = import.meta.env.BASE_URL;
       </li>
     ))}
   </ul>
+  <p id="no-results-message" class="no-results-message" style="display: none;">It's nothing here...</p>
 </div>
 
 <style>
+  .no-results-message {
+    padding: 2rem;
+    text-align: center;
+    font-style: italic;
+    opacity: 0.7;
+  }
   .publication-item.hidden {
     display: none;
   }
@@ -50,6 +57,7 @@ const baseUrl = import.meta.env.BASE_URL;
 
     searchBar.addEventListener('input', (e) => {
       const searchTerm = e.target.value.toLowerCase().trim();
+      const animationPromises = [];
 
       publicationItems.forEach(item => {
         const title = item.querySelector('.title')?.textContent.toLowerCase().trim() || '';
@@ -74,10 +82,27 @@ const baseUrl = import.meta.env.BASE_URL;
             { opacity: 0 }
           ], { duration: 300, easing: 'ease-in' });
           animations.set(item, animation);
-          animation.onfinish = () => {
-            item.classList.add('hidden');
-            animations.delete(item);
-          };
+          
+          const promise = new Promise(resolve => {
+            animation.onfinish = () => {
+              item.classList.add('hidden');
+              animations.delete(item);
+              resolve(null);
+            };
+          });
+          animationPromises.push(promise);
+        }
+      });
+
+      Promise.all(animationPromises).then(() => {
+        const visibleCount = publicationItems.filter(item => !item.classList.contains('hidden')).length;
+        const noResultsMessage = document.getElementById('no-results-message');
+        if (noResultsMessage) {
+          if (visibleCount === 0 && searchTerm) {
+            noResultsMessage.style.display = 'block';
+          } else {
+            noResultsMessage.style.display = 'none';
+          }
         }
       });
     });
