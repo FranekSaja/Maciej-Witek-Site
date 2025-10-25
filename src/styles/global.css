@@ -7,23 +7,6 @@ html {
 }
 
 :root {
-  --color-bg: #f5f3f0; /* Lekko szary, ciepły beż tła */
-  --color-fg: #6b4f2c; /* Ciemne, miodowe złoto */
-  --color-menu-bg: #e9e4db; /* Wyraźnie ciemniejsze, beżowe menu */
-  --color-menu-fg: #8c785c; /* Zgaszone złoto dla tekstu w menu */
-  --color-link-bg: #f5e5c7; /* Jasne, piaskowe złoto */
-  --color-link-fg: #b58a3f; /* Nasycone, antyczne złoto */
-  --color-link-hover-bg: #b58a3f;
-  --color-link-hover-fg: #ffffff;
-  --shadow-color: rgba(107, 79, 44, 0.15); /* Cień oparty na nowym kolorze tekstu */
-  --color-image-bg: #ffffff;
-  --color-menu-link-hover-bg: #dcd4c9; /* Zachowany ciemniejszy hover */
-  --color-gradient-bg: #b58a3f;
-  --container: 72rem;
-  --color-container-bg: #fcfaf7; /* Zachowany bardzo jasny kontener */
-}
-
-html[data-theme='dark'] {
   --color-bg: #192A3E; /* Dark navy background */
   --color-fg: #FDFBF7; /* Soft off-white text */
   --color-menu-bg: #2a3c6b; /* Slightly darker teal */
@@ -36,7 +19,24 @@ html[data-theme='dark'] {
   --color-image-bg: var(--color-fg);
   --color-menu-link-hover-bg: #0c4a6e;
   --color-gradient-bg: white;
+  --container: 72rem;
   --color-container-bg: #20344f; /* Dark mode container background */
+}
+
+html[data-theme='light'] {
+  --color-bg: #f5f3f0; /* Lekko szary, ciepły beż tła */
+  --color-fg: #6b4f2c; /* Ciemne, miodowe złoto */
+  --color-menu-bg: #e9e4db; /* Wyraźnie ciemniejsze, beżowe menu */
+  --color-menu-fg: #8c785c; /* Zgaszone złoto dla tekstu w menu */
+  --color-link-bg: #f5e5c7; /* Jasne, piaskowe złoto */
+  --color-link-fg: #b58a3f; /* Nasycone, antyczne złoto */
+  --color-link-hover-bg: #b58a3f;
+  --color-link-hover-fg: #ffffff;
+  --shadow-color: rgba(107, 79, 44, 0.15); /* Cień oparty na nowym kolorze tekstu */
+  --color-image-bg: #ffffff;
+  --color-menu-link-hover-bg: #dcd4c9; /* Zachowany ciemniejszy hover */
+  --color-gradient-bg: #b58a3f;
+  --color-container-bg: #fcfaf7; /* Zachowany bardzo jasny kontener */
 }
 
 .prose img {
