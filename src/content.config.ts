@@ -59,10 +59,13 @@ const publications = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
+    abstract: z.string(),
     author: z.string(),
-    description: z.string().optional(),
-    date: z.string().optional(),
-    summary: z.string().optional(),
+    preprint: z.string().optional(),
+    journalLink: z.string().url().optional(),
+    pdfFile: z.string().optional(),
+    keywords: z.array(z.string()),
+    publicationDate: z.string(),
     lang: z.enum(['pl', 'en']),
   })
 });

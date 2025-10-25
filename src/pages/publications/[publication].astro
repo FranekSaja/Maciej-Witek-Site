@@ -1,6 +1,7 @@
 ---
 import MainLayout from '@layouts/MainLayout.astro';
 import { getCollection } from 'astro:content';
+import Icon from '@components/Icon.astro';
 
 export async function getStaticPaths() {
   const publications = await getCollection('publications');
@@ -13,9 +14,55 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
-<MainLayout title={entry.data.title} description={entry.data.description}>
+<MainLayout title={entry.data.title} description={entry.data.abstract}>
   <article class="prose dark:prose-invert max-w-none">
-    <h1>{entry.data.title}</h1>
+    <header>
+      <h1 class="h1-global">{entry.data.title}</h1>
+      <p class="text-lg text-gray-600 dark:text-gray-400 mb-4">{entry.data.author}</p>
+      <p class="text-sm text-gray-500 dark:text-gray-300 mb-4">
+        {new Date(entry.data.publicationDate).toLocaleDateString(entry.data.lang, { year: 'numeric', month: 'long', day: 'numeric' })}
+      </p>
+    </header>
+
+    <section class="mb-8 p-6 rounded-lg" style="background-color: var(--color-container-bg);">
+      <p>{entry.data.abstract}</p>
+    </section>
+
     <Content />
+
+    <footer class="mt-8 pt-4">
+      <div class="mb-8">
+        <div class="flex flex-wrap gap-4 mt-2">
+          {entry.data.journalLink && (
+            <a href={entry.data.journalLink} target="_blank" rel="noopener noreferrer" class="cv-button">
+              <Icon name="mdi:web" size={24} />
+              <span>Link do czasopisma</span>
+            </a>
+          )}
+          {entry.data.preprint && (
+            <a href={entry.data.preprint} target="_blank" rel="noopener noreferrer" class="cv-button">
+              <Icon name="mdi:file-pdf-box" size={24} />
+              <span>Pobierz preprint</span>
+            </a>
+          )}
+          {entry.data.pdfFile && (
+            <a href={entry.data.pdfFile} target="_blank" rel="noopener noreferrer" class="cv-button">
+              <Icon name="mdi:file-download" size={24} />
+              <span>Pobierz publikację</span>
+            </a>
+          )}
+        </div>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold">Słowa kluczowe</h3>
+        <div class="flex flex-wrap gap-2 mt-2">
+          {entry.data.keywords.map((keyword: string) => (
+            <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
+              {keyword}
+            </span>
+          ))}
+        </div>
+      </div>
+    </footer>
   </article>
 </MainLayout>
