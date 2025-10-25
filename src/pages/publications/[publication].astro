@@ -17,11 +17,13 @@ const { Content } = await entry.render();
 <MainLayout title={entry.data.title} description={entry.data.abstract}>
   <article class="prose dark:prose-invert max-w-none">
     <header>
-      <h1 class="h1-global">{entry.data.title}</h1>
-      <p class="text-lg text-gray-600 dark:text-gray-400 mb-4">{entry.data.author}</p>
-      <p class="text-sm text-gray-500 dark:text-gray-300 mb-4">
-        {new Date(entry.data.publicationDate).toLocaleDateString(entry.data.lang, { year: 'numeric', month: 'long', day: 'numeric' })}
-      </p>
+      <div class="flex items-baseline gap-4 mb-4">
+        <p class="text-xl text-gray-600 dark:text-gray-400">{entry.data.author}</p>
+        <p class="text-base text-gray-500 dark:text-gray-300">
+          {new Date(entry.data.publicationDate).toLocaleDateString(entry.data.lang, { year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
+      </div>
+      <h1 class="project-title">{entry.data.title}</h1>
     </header>
 
     <section class="mb-8 p-6 rounded-lg" style="background-color: var(--color-container-bg);">

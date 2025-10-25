@@ -113,6 +113,19 @@ html[data-theme='dark'] {
   }
 }
 
+.project-title {
+  font-size: 2.5rem; /* Znacznie mniejszy niż h1-global */
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+@media (max-width: 768px) {
+  .project-title {
+    font-size: 1.875rem; /* text-3xl */
+    line-height: 1;
+  }
+}
+
 .icon-global {
   display: flex;
   justify-content: center;
